@@ -1,0 +1,33 @@
+<div class="col-xl-8">
+    <div class="card">
+        <div class="card-header">
+            <h5>Perfil del Estudiante</h5>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <label class="col-sm-4 col-form-label">ID:</label>
+                <div class="col-sm-6">
+                    <input id="redondo" type="text" class="form-control form-control-inverse form-control-center" value="{{ persona.ID }}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Nombres:</label>
+                <div class="col-sm-6">
+                    <input id="redondo" type="text" class="form-control form-control-inverse form-control-center" value="{{ persona.nombres }}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Apellidos:</label>
+                <div class="col-sm-6">
+                    <input id="redondo" type="text" class="form-control form-control-inverse form-control-center" value="{{ persona.apellidos }}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Teléfono:</label>
+                <div class="col-sm-6">
+                    <input id="redondo" type="tel" class="form-control form-control-inverse form-control-center" value="{{ persona.telefono }}" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
