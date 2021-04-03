@@ -28,12 +28,10 @@ public class Student extends Person {
 	private String assigned_career;
 	
 	
-	@NotEmpty(message = "Ingrese el estado de matriculacion")
 	@NotNull
 	@Column(name="registration_line")
 	private Boolean registration_line;
 	
-	@NotEmpty(message = "Ingrese el estado")
 	@NotNull
 	@Column(name="status")
 	private Boolean status;
@@ -64,11 +62,11 @@ public class Student extends Person {
 	public void setRegistration_line(Boolean registration_line) {
 		this.registration_line = registration_line;
 	}
-	public Boolean getStatis() {
+	public Boolean getStatus() {
 		return status;
 	}
-	public void setStatis(Boolean statis) {
-		this.status = statis;
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
 	
 }
