@@ -41,6 +41,11 @@ public class StudentController {
 			throw new StudentNotFoundException(id);
 		return student;
 	}
+	@GetMapping("/message")
+	public String test() {
+		
+		return "Hello from microservice student";
+	}
 	
 	@GetMapping
 	public List<Student> list(){
