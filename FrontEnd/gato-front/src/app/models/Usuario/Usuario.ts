@@ -1,6 +1,11 @@
 export class Usuario{
-    ID: string;
+    ID: number;
     correoInstitucional: string;
     username: string;
+    password: string;
+}
+
+export class Login{
+    ID: string;
     password: string;
 }

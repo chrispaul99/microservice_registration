@@ -12,7 +12,7 @@ export const environment = {
       Accept: 'application/json'
     })
   },
-  url: '',
+  url: 'localhost:8080',
 };
 
 /*

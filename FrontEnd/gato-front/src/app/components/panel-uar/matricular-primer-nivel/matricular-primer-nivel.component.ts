@@ -5,7 +5,6 @@ import { Matricula } from '../../../models/Matricula/matricula';
 import { Materia } from '../../../models/Materia/materia';
 import { Periodo } from '../../../models/Periodo/periodo';
 import { Estudiante } from '../../../models/Estudiante/estudiante';
-import { Persona } from '../../../models/Persona/persona';
 
 @Component({
   selector: 'app-matricular-primer-nivel',

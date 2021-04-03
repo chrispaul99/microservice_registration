@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Estudiante } from '../../../models/Estudiante/estudiante';
-import { Persona } from '../../../models/Persona/persona';
 import { Usuario } from '../../../models/Usuario/Usuario';
+import { EstudianteService } from '../../../services/Estudiante/estudiante.service';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crear-estudiante',
@@ -15,11 +16,11 @@ export class CrearEstudianteComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   estudiante: Estudiante = new Estudiante();
-  persona: Persona = new Persona();
   usuario: Usuario = new Usuario();
 
   constructor(
     private formBuilder: FormBuilder,
+    private estudianteService: EstudianteService,
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +31,8 @@ export class CrearEstudianteComponent implements OnInit {
       nombres: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       fechaNac: ['', [Validators.required]],
+      lugarNac: ['', [Validators.required]],
+      sexo: ['', [Validators.required]],
       cedula: ['', [Validators.required]],
       telefono: ['', [Validators.required]],
       carrera: ['', [Validators.required]],
@@ -41,10 +44,9 @@ export class CrearEstudianteComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.estudiante.matriculaLinea = false;
+    this.estudiante.registration_line = false;
     this.estudiante.status = false;
-    this.estudiante.idPersona = this.persona.ID;
-    this.persona.user = this.usuario;
+    this.estudiante.user = this.usuario;
     this.submitted = true;
     if (this.form.invalid) {
       Swal.fire({
@@ -54,16 +56,15 @@ export class CrearEstudianteComponent implements OnInit {
       });
       return;
     }
-    // this.empresaService.create(this.empresa).subscribe(() => {
+    // this.estudianteService.create(this.estudiante).subscribe(() => {
     //   Swal.fire({
     //     position: 'top-end',
     //     icon: 'success',
-    //     title: 'Empresa Agregada',
+    //     title: 'Estudiante Agregado',
     //     showConfirmButton: false,
     //     timer: 1500
     //   });
     //   this.estudiante = new Estudiante();
-    //   this.persona = new Persona();
     //   this.usuario = new Usuario();
     //   this.onReset();
     // });
@@ -73,8 +74,8 @@ export class CrearEstudianteComponent implements OnInit {
     this.submitted = false;
     this.form.reset();
     this.estudiante = new Estudiante();
-    this.persona = new Persona();
     this.usuario = new Usuario();
+    this.estudianteService.retrieve().subscribe();
   }
 
 }

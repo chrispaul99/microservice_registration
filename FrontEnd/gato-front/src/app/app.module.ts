@@ -9,7 +9,6 @@ import { PanelEstudianteComponent } from './components/panel-estudiante/panel-es
 import { FormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { EncryptService } from './services/Encrypt/encrypt.service';
-import { PersonaService } from './services/Persona/persona.service';
 import { ServiceInterceptor } from './services/Interceptor/service.interceptor';
 import { PanelUarComponent } from './components/panel-uar/panel-uar.component';
 import { PanelVicerectorComponent } from './components/panel-vicerector/panel-vicerector.component';
@@ -38,7 +37,6 @@ import { PanelDirectorCarreraComponent } from './components/panel-director-carre
   ],
   providers: [
     EncryptService,
-    PersonaService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ServiceInterceptor,
