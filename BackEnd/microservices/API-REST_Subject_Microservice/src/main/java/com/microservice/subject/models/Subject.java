@@ -30,10 +30,9 @@ public class Subject {
 	@Column(name="assigned_career")
 	private String assigned_career;
 	
-	@NotEmpty(message = "Ingrese el nivel de la materia")
 	@NotNull
 	@Column(name="level")
-	private int level;
+	private Integer level;
 
     @NotEmpty(message = "Ingrese el NRC de la materia")
 	@NotNull
@@ -41,10 +40,9 @@ public class Subject {
 	@Column(name="nrc")
 	private String nrc;
 
-    @NotEmpty(message = "Ingrese el numero de creditos de la materia")
 	@NotNull
 	@Column(name="total_credits")
-	private int total_credits;
+	private Integer total_credits;
 
     @NotNull
 	@Column(name="status")
