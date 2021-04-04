@@ -13,7 +13,4 @@ public interface IServiceSchedule {
 	public Schedule findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
 	public List<Schedule> findAll(); //List
-	
-	public List<Schedule> findByFirstName(String firstName);
-	public List<Schedule> findByLastName(String lastName);
 }

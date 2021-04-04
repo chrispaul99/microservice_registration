@@ -50,18 +50,4 @@ public class PeriodService implements IServicePeriod{
 		return (List<Period>) PeriodService.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Period> findByFirstName(String firstName) {
-		return PeriodService.findByFirstName(firstName);
-	}
-
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Period> findByLastName(String lastName) {
-		return PeriodService.findByLastName(lastName);
-	}
-
-
 }

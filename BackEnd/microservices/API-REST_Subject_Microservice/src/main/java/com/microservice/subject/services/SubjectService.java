@@ -49,18 +49,4 @@ public class SubjectService implements IServiceSubject{
 		return (List<Subject>) SubjectService.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Subject> findByFirstName(String firstName) {
-		return SubjectService.findByFirstName(firstName);
-	}
-
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Subject> findByLastName(String lastName) {
-		return SubjectService.findByLastName(lastName);
-	}
-
-
 }

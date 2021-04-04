@@ -52,13 +52,6 @@ public class SubjectController {
 		return service.findAll();
 	}
 	
-	@GetMapping("/listByLastName")
-	public List<Subject> listByLastname(@PathParam(value = "lastName") String lastName){
-		return service.findByLastName(lastName);
-	}
-	
-	
-	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Subject create(

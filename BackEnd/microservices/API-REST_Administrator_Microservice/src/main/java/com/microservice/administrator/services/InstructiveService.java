@@ -50,18 +50,6 @@ public class InstructiveService implements IServiceInstructive{
 		return (List<Instructive>) InstructiveService.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Instructive> findByFirstName(String firstName) {
-		return InstructiveService.findByFirstName(firstName);
-	}
-
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Instructive> findByLastName(String lastName) {
-		return InstructiveService.findByLastName(lastName);
-	}
 
 
 }

@@ -47,13 +47,6 @@ public class InstructiveController {
 		return service.findAll();
 	}
 	
-	@GetMapping("/listByLastName")
-	public List<Instructive> listByLastname(@PathParam(value = "lastName") String lastName){
-		return service.findByLastName(lastName);
-	}
-	
-	
-	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Instructive create(
