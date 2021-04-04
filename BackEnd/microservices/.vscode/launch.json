@@ -88,6 +88,15 @@
             "mainClass": "com.microservice.test.microservicetest.MicroserviceTestApplication",
             "projectName": "microservice-test",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceGatewayApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.gateway.microservicegateway.MicroserviceGatewayApplication",
+            "args": ""
         }
     ]
 }
