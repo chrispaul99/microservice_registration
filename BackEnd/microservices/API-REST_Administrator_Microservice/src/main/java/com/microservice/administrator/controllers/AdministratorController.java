@@ -30,7 +30,13 @@ public class AdministratorController {
 	
 	@Autowired
 	private IServiceAdministrator service;
-	
+
+	@GetMapping("/message")
+	public String test() {
+		
+		return "Hello from microservice administrator";
+	}
+
 	@GetMapping("/{id}")
 	public Administrator retrieve(@PathVariable(value = "id") Long id){
 		Administrator Administrator = service.findById(id);

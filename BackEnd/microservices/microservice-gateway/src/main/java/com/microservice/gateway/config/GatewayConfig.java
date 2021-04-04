@@ -18,12 +18,16 @@ public class GatewayConfig {
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("microservice-student", r -> r.path("/api/student/**")
-                        .filters(f -> f.filter(filter))
-                        .uri("http://localhost:8081"))
-
+                        .filters(f -> f.filter(filter).stripPrefix(2))
+                        .uri("http://localhost:8081/"))
+                .route("microservice-administrator", r -> r.path("/api/gestion/**")
+                        .filters(f -> f.filter(filter).stripPrefix(2))
+                        .uri("http://localhost:8082/"))
                 .route("microservice-security", r -> r.path("/api/security/**")
-                        .filters(f -> f.filter(filter))
-                        .uri("http://localhost:8084"))
+                        .filters(f -> f.filter(filter).stripPrefix(2))
+                        .uri("http://localhost:8084/"))
+                        
+               
                 .build();
     }
 
