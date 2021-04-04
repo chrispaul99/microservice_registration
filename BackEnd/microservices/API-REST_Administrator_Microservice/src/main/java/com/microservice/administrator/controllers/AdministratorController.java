@@ -75,7 +75,7 @@ public class AdministratorController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.ok("Administrator Deleted");
+		return ResponseEntity.ok().build();
     }
 
 }

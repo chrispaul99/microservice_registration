@@ -73,7 +73,7 @@ public class ScheduleController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.ok("Schedule Deleted");
+        return ResponseEntity.ok().build();
     }
 
 }

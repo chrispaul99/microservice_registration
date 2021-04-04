@@ -91,11 +91,12 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-MicroserviceGatewayApplication",
+            "name": "Spring Boot-MicroserviceSecurityApplication<microservice_security>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
-            "mainClass": "com.microservice.gateway.microservicegateway.MicroserviceGatewayApplication",
+            "mainClass": "com.microservice.security.MicroserviceSecurityApplication",
+            "projectName": "microservice_security",
             "args": ""
         }
     ]
