@@ -35,17 +35,7 @@ public class Period {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Calendar end_date;
-	
-	@NotEmpty(message = "Ingrese el cronograma")
-	@NotNull
-	@Column(name="schedule")
-	private String schedule;
-	
-	@NotEmpty(message = "Ingrese el instructivo")
-	@NotNull
-	@Column(name="file")
-	private String file;
-	
+		
 	@NotEmpty(message = "Seleccione el status")
 	@NotNull
 	@Column(name="status")
@@ -83,21 +73,6 @@ public class Period {
 		this.end_date = end_date;
 	}
 
-	public String getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(String schedule) {
-		this.schedule = schedule;
-	}
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
 
 	public Boolean getStatus() {
 		return status;

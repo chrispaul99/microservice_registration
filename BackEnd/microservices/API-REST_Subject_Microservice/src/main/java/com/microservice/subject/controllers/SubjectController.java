@@ -25,10 +25,7 @@ import com.microservice.subject.models.Subject;
 import com.microservice.subject.services.IServiceSubject;
 
 
-
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/subject")
 public class SubjectController {
 	
 	@Autowired

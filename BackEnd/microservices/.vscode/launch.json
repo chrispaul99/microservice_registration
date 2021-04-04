@@ -49,6 +49,45 @@
             "mainClass": "com.microservice.subject.ApiRestSubjectMicroserviceApplication",
             "projectName": "API-REST_Subject_Microservice",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceEurekaApplication<microservice_eureka>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.eureka.microservice_eureka.MicroserviceEurekaApplication",
+            "projectName": "microservice_eureka",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MavenWrapperDownloader",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "MavenWrapperDownloader",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceGatewayApplication<microservice-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.gateway.microservicegateway.MicroserviceGatewayApplication",
+            "projectName": "microservice-gateway",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceTestApplication<microservice-test>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.test.microservicetest.MicroserviceTestApplication",
+            "projectName": "microservice-test",
+            "args": ""
         }
     ]
 }
