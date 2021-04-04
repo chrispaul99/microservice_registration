@@ -88,6 +88,16 @@
             "mainClass": "com.microservice.test.microservicetest.MicroserviceTestApplication",
             "projectName": "microservice-test",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceSecurityApplication<microservice_security>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.security.MicroserviceSecurityApplication",
+            "projectName": "microservice_security",
+            "args": ""
         }
     ]
 }
