@@ -50,18 +50,5 @@ public class AdministratorService implements IServiceAdministrator{
 		return (List<Administrator>) AdministratorService.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Administrator> findByFirstName(String firstName) {
-		return AdministratorService.findByFirstName(firstName);
-	}
-
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Administrator> findByLastName(String lastName) {
-		return AdministratorService.findByLastName(lastName);
-	}
-
 
 }

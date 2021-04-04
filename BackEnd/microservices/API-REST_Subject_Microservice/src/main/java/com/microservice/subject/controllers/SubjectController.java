@@ -26,6 +26,7 @@ import com.microservice.subject.services.IServiceSubject;
 
 
 @RestController
+@RequestMapping("/")
 public class SubjectController {
 	
 	@Autowired
