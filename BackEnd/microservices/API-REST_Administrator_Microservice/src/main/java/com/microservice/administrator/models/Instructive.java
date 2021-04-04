@@ -65,7 +65,15 @@ public class Instructive {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	
 
+	public Period getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Period period) {
+		this.period = period;
+	}
+	
+	
 
 }

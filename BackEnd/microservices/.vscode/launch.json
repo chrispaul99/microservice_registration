@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiGatewayApplication<API-GATEWAY>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.api.gateway.ApiGatewayApplication",
+            "projectName": "API-GATEWAY",
+            "args": ""
+        }
+    ]
+}

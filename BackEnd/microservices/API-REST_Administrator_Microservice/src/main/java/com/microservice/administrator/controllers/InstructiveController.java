@@ -1,4 +1,4 @@
-package com.microservice.subject.controllers;
+package com.microservice.administrator.controllers;
 
 import java.util.List;
 
@@ -20,40 +20,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservice.subject.exceptions.SubjectNotFoundException;
-import com.microservice.subject.models.Subject;
-import com.microservice.subject.services.IServiceSubject;
+import com.microservice.administrator.exceptions.InstructiveNotFoundException;
+import com.microservice.administrator.models.Instructive;
+import com.microservice.administrator.services.IServiceInstructive;
 
 
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/subject")
-public class SubjectController {
+@RequestMapping("/instructive")
+public class InstructiveController {
 	
 	@Autowired
-	private IServiceSubject service;
+	private IServiceInstructive service;
 	
 	@GetMapping("/{id}")
-	public Subject retrieve(@PathVariable(value = "id") Long id){
-		Subject Subject = service.findById(id);
-		if (Subject == null)
-			throw new SubjectNotFoundException(id);
-		return Subject;
-	}
-	@GetMapping("/message")
-	public String test() {
-		
-		return "Hello from microservice Subject";
+	public Instructive retrieve(@PathVariable(value = "id") Long id){
+		Instructive Instructive = service.findById(id);
+		if (Instructive == null)
+			throw new InstructiveNotFoundException(id);
+		return Instructive;
 	}
 	
 	@GetMapping
-	public List<Subject> list(){
+	public List<Instructive> list(){
 		return service.findAll();
 	}
 	
 	@GetMapping("/listByLastName")
-	public List<Subject> listByLastname(@PathParam(value = "lastName") String lastName){
+	public List<Instructive> listByLastname(@PathParam(value = "lastName") String lastName){
 		return service.findByLastName(lastName);
 	}
 	
@@ -61,25 +56,25 @@ public class SubjectController {
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Subject create(
+	public Instructive create(
 			@Valid
-			@RequestBody Subject Subject
+			@RequestBody Instructive Instructive
 		) {
-		service.save(Subject);
-		return Subject;
+		service.save(Instructive);
+		return Instructive;
 	}
 	
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Subject Subject, @PathVariable Long id) {
-        Subject SubjectOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody Instructive Instructive, @PathVariable Long id) {
+        Instructive InstructiveOptional = service.findById(id);
 
-        if (SubjectOptional==null)
+        if (InstructiveOptional==null)
             return ResponseEntity.notFound().build();
-        Subject.setIdSubject(id);
-        service.save(Subject);
-        return ResponseEntity.ok(Subject);
+        Instructive.setIdInstructive(id);
+        service.save(Instructive);
+        return ResponseEntity.ok(Instructive);
     }
 	
 	
@@ -88,7 +83,7 @@ public class SubjectController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.ok("Subject Deleted");
+        return ResponseEntity.ok("Instructive Deleted");
     }
 
 }
