@@ -98,6 +98,16 @@
             "mainClass": "com.microservice.security.MicroserviceSecurityApplication",
             "projectName": "microservice_security",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceGatewayApplication<microservice-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.gateway.MicroserviceGatewayApplication",
+            "projectName": "microservice-gateway",
+            "args": ""
         }
     ]
 }
