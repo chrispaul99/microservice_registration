@@ -1,0 +1,54 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceEurekaApplication<microservice_eureka>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.eureka.microservice_eureka.MicroserviceEurekaApplication",
+            "projectName": "microservice_eureka",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SecurityServerApplication<security_server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.security.server.SecurityServerApplication",
+            "projectName": "security_server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestStudentMicroserviceApplication<API-REST_Student_Microservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.student.ApiRestStudentMicroserviceApplication",
+            "projectName": "API-REST_Student_Microservice",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestAdministratorMicroserviceApplication<API-REST_Administrator_Microservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.administrator.ApiRestAdministratorMicroserviceApplication",
+            "projectName": "API-REST_Administrator_Microservice",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceGatewayApplication<microservice-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.gateway.MicroserviceGatewayApplication",
+            "projectName": "microservice-gateway",
+            "args": ""
+        }
+    ]
+}
