@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     /* usuario*/
     /*this.usuario.ID = 'L00379361';
     this.usuario.password = '6zmKXdL2OJMAlFWSTIJcbQ==';*/
-    this.router.navigateByUrl('/panelDirector'); // Borrar
+    this.router.navigateByUrl('/panelUar'); // Borrar
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',

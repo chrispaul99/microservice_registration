@@ -28,8 +28,37 @@ export class RevisarInstructivoComponent implements OnInit {
     // );
   }
 
-  Denied(): void {}
+  Denied(): void {
+    // False
+    this.onSubmit();
+  }
 
-  Aprobe(): void {}
+  Aprobe(): void {
+    // True
+    this.onSubmit();
+  }
+
+  onSubmit(): void {
+    // if (this.form.invalid) {
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Oops...',
+    //     text: 'Error en el formulario',
+    //   });
+    //   return;
+    // }
+    // this.materiaService.create(this.materia).subscribe(() => {
+    //   Swal.fire({
+    //     position: 'top-end',
+    //     icon: 'success',
+    //     title: 'Materia Modificada',
+    //     showConfirmButton: false,
+    //     timer: 1500
+    //   });
+    //   this.materia = new Materia();
+    //   this.submitted = false;
+    //   location.reload();
+    // });
+  }
 
 }

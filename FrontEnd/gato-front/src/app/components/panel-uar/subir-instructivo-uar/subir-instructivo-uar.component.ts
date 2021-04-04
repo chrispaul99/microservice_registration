@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Instructivo } from '../../../models/Instructivo/instructivo';
+import { InstructivoService } from '../../../services/Instructivo/instructivo.service';
 
 @Component({
   selector: 'app-subir-instructivo-uar',
@@ -16,6 +17,7 @@ export class SubirInstructivoUarComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private instructivoService: InstructivoService,
   ) { }
 
   ngOnInit(): void {
@@ -40,18 +42,18 @@ export class SubirInstructivoUarComponent implements OnInit {
       });
       return;
     }
-    // this.empresaService.create(this.instructivo).subscribe(() => {
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Instructivo Enviado',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   });
-    //   this.instructivo = new Instructivo();
-    //   this.submitted = false;
-    //   this.onReset();
-    // });
+    this.instructivoService.create(this.instructivo).subscribe(() => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Instructivo Enviado',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.instructivo = new Instructivo();
+      this.submitted = false;
+      this.onReset();
+    });
   }
 
   onReset(): void {
