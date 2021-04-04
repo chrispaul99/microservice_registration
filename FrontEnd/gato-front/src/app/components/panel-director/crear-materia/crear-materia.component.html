@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Nombre:</label>
                     <div class="col-sm-8">
-                        <input formControlName="nombre" [(ngModel)]="materia.nombre" [ngClass]="{'is-invalid': submitted && f.nombre.errors}" type="text" class="form-control" placeholder="Nombre">
+                        <input formControlName="nombre" [(ngModel)]="materia.name" [ngClass]="{'is-invalid': submitted && f.nombre.errors}" type="text" class="form-control" placeholder="Nombre">
                         <div *ngIf="submitted && f.nombre.errors">
                             <div *ngIf="f.nombre.errors.required" class="text-c-red">El nombre es requerido</div>
                         </div>
@@ -17,7 +17,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Carrera:</label>
                     <div class="col-sm-8">
-                        <input formControlName="carrera" [(ngModel)]="materia.carrera" [ngClass]="{'is-invalid': submitted && f.carrera.errors}" type="text" class="form-control" placeholder="Carrera">
+                        <input formControlName="carrera" [(ngModel)]="materia.assigned_career" [ngClass]="{'is-invalid': submitted && f.carrera.errors}" type="text" class="form-control" placeholder="Carrera">
                         <div *ngIf="submitted && f.carrera.errors">
                             <div *ngIf="f.carrera.errors.required" class="text-c-red">La carrera es requerida</div>
                         </div>
@@ -26,7 +26,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Nivel:</label>
                     <div class="col-sm-8">
-                        <input formControlName="nivel" [(ngModel)]="materia.nivel" [ngClass]="{'is-invalid': submitted && f.nivel.errors}" type="text" class="form-control" placeholder="Nivel">
+                        <input formControlName="nivel" [(ngModel)]="materia.level" [ngClass]="{'is-invalid': submitted && f.nivel.errors}" type="number" class="form-control" placeholder="Nivel">
                         <div *ngIf="submitted && f.nivel.errors">
                             <div *ngIf="f.nivel.errors.required" class="text-c-red">El nivel es requerido</div>
                         </div>
@@ -44,7 +44,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Créditos:</label>
                     <div class="col-sm-8">
-                        <input formControlName="creditos" [(ngModel)]="materia.creditos" [ngClass]="{'is-invalid': submitted && f.creditos.errors}" type="text" class="form-control" placeholder="Créditos">
+                        <input formControlName="creditos" [(ngModel)]="materia.total_credits" [ngClass]="{'is-invalid': submitted && f.creditos.errors}" type="number" class="form-control" placeholder="Créditos">
                         <div *ngIf="submitted && f.creditos.errors">
                             <div *ngIf="f.creditos.errors.required" class="text-c-red">Los créditos son requeridos</div>
                         </div>

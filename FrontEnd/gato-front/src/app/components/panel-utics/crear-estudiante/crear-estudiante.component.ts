@@ -77,7 +77,6 @@ export class CrearEstudianteComponent implements OnInit {
     this.form.reset();
     this.estudiante = new Estudiante();
     this.usuario = new Usuario();
-    this.estudianteService.retrieve().subscribe();
   }
 
 }

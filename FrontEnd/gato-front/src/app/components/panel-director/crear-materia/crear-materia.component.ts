@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Materia } from '../../../models/Materia/materia';
+import { MateriaService } from '../../../services/Materia/materia.service';
 
 @Component({
   selector: 'app-crear-materia',
@@ -16,6 +17,7 @@ export class CrearMateriaComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private materiaService: MateriaService,
   ) { }
 
   ngOnInit(): void {
@@ -43,18 +45,18 @@ export class CrearMateriaComponent implements OnInit {
       });
       return;
     }
-    // this.empresaService.create(this.materia).subscribe(() => {
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Materia Agregada',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   });
-    //   this.materia = new Materia();
-    //   this.submitted = false;
-    //   this.onReset();
-    // });
+    this.materiaService.create(this.materia).subscribe(() => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Materia Agregada',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.materia = new Materia();
+      this.submitted = false;
+      this.onReset();
+    });
   }
 
   onReset(): void {
