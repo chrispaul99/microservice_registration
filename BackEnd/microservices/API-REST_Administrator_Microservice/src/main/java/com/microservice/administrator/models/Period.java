@@ -21,7 +21,7 @@ public class Period {
 	@Id
 	@Column(name="id_period")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idInstructive;
+	private Long idPeriod;
 	
 	@Column(name="start_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -51,5 +51,73 @@ public class Period {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_instructive")
 	 private Instructive instructive;
+
+	public Period() {
+	}
+
+	public Period(Long idPeriod) {
+		this.idPeriod = idPeriod;
+	}
+	
+	public Long getIdPeriod() {
+		return idPeriod;
+	}
+
+	public void setIdPeriod(Long idPeriod) {
+		this.idPeriod = idPeriod;
+	}
+	
+	public Calendar getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(Calendar start_date) {
+		this.start_date = start_date;
+	}
+
+	public Calendar getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Calendar end_date) {
+		this.end_date = end_date;
+	}
+
+	public String getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	
+
+	public Instructive getInstructive() {
+		return instructive;
+	}
+
+	public void setInstructive(Instructive instructive) {
+		this.instructive = instructive;
+	}
+
+
+	
 
 }

@@ -29,7 +29,7 @@ import com.microservice.administrator.services.IServiceAdministrator;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/administrator")
-public class AministratorController {
+public class AdministratorController {
 	
 	@Autowired
 	private IServiceAdministrator service;

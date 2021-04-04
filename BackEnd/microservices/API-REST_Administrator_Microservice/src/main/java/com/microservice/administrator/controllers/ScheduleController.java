@@ -1,4 +1,4 @@
-package com.microservice.subject.controllers;
+package com.microservice.administrator.controllers;
 
 import java.util.List;
 
@@ -20,40 +20,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservice.subject.exceptions.SubjectNotFoundException;
-import com.microservice.subject.models.Subject;
-import com.microservice.subject.services.IServiceSubject;
+import com.microservice.administrator.exceptions.ScheduleNotFoundException;
+import com.microservice.administrator.models.Schedule;
+import com.microservice.administrator.services.IServiceSchedule;
 
 
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/subject")
-public class SubjectController {
+@RequestMapping("/schedule")
+public class ScheduleController {
 	
 	@Autowired
-	private IServiceSubject service;
+	private IServiceSchedule service;
 	
 	@GetMapping("/{id}")
-	public Subject retrieve(@PathVariable(value = "id") Long id){
-		Subject Subject = service.findById(id);
-		if (Subject == null)
-			throw new SubjectNotFoundException(id);
-		return Subject;
-	}
-	@GetMapping("/message")
-	public String test() {
-		
-		return "Hello from microservice Subject";
+	public Schedule retrieve(@PathVariable(value = "id") Long id){
+		Schedule Schedule = service.findById(id);
+		if (Schedule == null)
+			throw new ScheduleNotFoundException(id);
+		return Schedule;
 	}
 	
 	@GetMapping
-	public List<Subject> list(){
+	public List<Schedule> list(){
 		return service.findAll();
 	}
 	
 	@GetMapping("/listByLastName")
-	public List<Subject> listByLastname(@PathParam(value = "lastName") String lastName){
+	public List<Schedule> listByLastname(@PathParam(value = "lastName") String lastName){
 		return service.findByLastName(lastName);
 	}
 	
@@ -61,25 +56,25 @@ public class SubjectController {
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Subject create(
+	public Schedule create(
 			@Valid
-			@RequestBody Subject Subject
+			@RequestBody Schedule Schedule
 		) {
-		service.save(Subject);
-		return Subject;
+		service.save(Schedule);
+		return Schedule;
 	}
 	
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Subject Subject, @PathVariable Long id) {
-        Subject SubjectOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody Schedule Schedule, @PathVariable Long id) {
+        Schedule ScheduleOptional = service.findById(id);
 
-        if (SubjectOptional==null)
+        if (ScheduleOptional==null)
             return ResponseEntity.notFound().build();
-        Subject.setIdSubject(id);
-        service.save(Subject);
-        return ResponseEntity.ok(Subject);
+        Schedule.setIdSchedule(id);
+        service.save(Schedule);
+        return ResponseEntity.ok(Schedule);
     }
 	
 	
@@ -88,7 +83,7 @@ public class SubjectController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.ok("Subject Deleted");
+        return ResponseEntity.ok("Schedule Deleted");
     }
 
 }

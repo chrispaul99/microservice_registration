@@ -1,4 +1,4 @@
-package com.microservice.subject.controllers;
+package com.microservice.administrator.controllers;
 
 import java.util.List;
 
@@ -20,40 +20,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservice.subject.exceptions.SubjectNotFoundException;
-import com.microservice.subject.models.Subject;
-import com.microservice.subject.services.IServiceSubject;
+import com.microservice.administrator.exceptions.PeriodNotFoundException;
+import com.microservice.administrator.models.Period;
+import com.microservice.administrator.services.IServicePeriod;
 
 
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/subject")
-public class SubjectController {
+@RequestMapping("/period")
+public class PeriodController {
 	
 	@Autowired
-	private IServiceSubject service;
+	private IServicePeriod service;
 	
 	@GetMapping("/{id}")
-	public Subject retrieve(@PathVariable(value = "id") Long id){
-		Subject Subject = service.findById(id);
-		if (Subject == null)
-			throw new SubjectNotFoundException(id);
-		return Subject;
-	}
-	@GetMapping("/message")
-	public String test() {
-		
-		return "Hello from microservice Subject";
+	public Period retrieve(@PathVariable(value = "id") Long id){
+		Period Period = service.findById(id);
+		if (Period == null)
+			throw new PeriodNotFoundException(id);
+		return Period;
 	}
 	
 	@GetMapping
-	public List<Subject> list(){
+	public List<Period> list(){
 		return service.findAll();
 	}
 	
 	@GetMapping("/listByLastName")
-	public List<Subject> listByLastname(@PathParam(value = "lastName") String lastName){
+	public List<Period> listByLastname(@PathParam(value = "lastName") String lastName){
 		return service.findByLastName(lastName);
 	}
 	
@@ -61,25 +56,25 @@ public class SubjectController {
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Subject create(
+	public Period create(
 			@Valid
-			@RequestBody Subject Subject
+			@RequestBody Period Period
 		) {
-		service.save(Subject);
-		return Subject;
+		service.save(Period);
+		return Period;
 	}
 	
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Subject Subject, @PathVariable Long id) {
-        Subject SubjectOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody Period Period, @PathVariable Long id) {
+        Period PeriodOptional = service.findById(id);
 
-        if (SubjectOptional==null)
+        if (PeriodOptional==null)
             return ResponseEntity.notFound().build();
-        Subject.setIdSubject(id);
-        service.save(Subject);
-        return ResponseEntity.ok(Subject);
+        Period.setIdPeriod(id);
+        service.save(Period);
+        return ResponseEntity.ok(Period);
     }
 	
 	
@@ -88,7 +83,7 @@ public class SubjectController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.ok("Subject Deleted");
+        return ResponseEntity.ok("Period Deleted");
     }
 
 }
