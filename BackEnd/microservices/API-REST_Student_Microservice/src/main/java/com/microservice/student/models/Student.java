@@ -27,10 +27,9 @@ public class Student extends Person {
 	@Column(name="assigned_career")
 	private String assigned_career;
 	
-	@NotEmpty(message = "Ingrese el numero total de creditos del estudiante")
 	@NotNull
 	@Column(name="num_credit")
-	private int num_credit;
+	private Integer num_credit;
 
 	@NotEmpty(message = "Ingrese el tipo de estudiante")
 	@NotNull
