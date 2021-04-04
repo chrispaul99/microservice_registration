@@ -25,7 +25,7 @@ import com.microservice.administrator.services.IServiceAdministrator;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/administrator")
 public class AdministratorController {
 	
 	@Autowired
