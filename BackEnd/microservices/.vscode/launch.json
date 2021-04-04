@@ -9,6 +9,46 @@
             "mainClass": "com.api.gateway.ApiGatewayApplication",
             "projectName": "API-GATEWAY",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestAdministratorMicroserviceApplication<API-REST_Administrator_Microservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.administrator.ApiRestAdministratorMicroserviceApplication",
+            "projectName": "API-REST_Administrator_Microservice",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestRegistrationMicroserviceApplication<API-REST_Registration_Microservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.registration.ApiRestRegistrationMicroserviceApplication",
+            "projectName": "API-REST_Registration_Microservice",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestStudentMicroserviceApplication<API-REST_Student_Microservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.student.ApiRestStudentMicroserviceApplication",
+            "projectName": "API-REST_Student_Microservice",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestSubjectMicroserviceApplication<API-REST_Subject_Microservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.subject.ApiRestSubjectMicroserviceApplication",
+            "projectName": "API-REST_Subject_Microservice",
+            "args": ""
         }
     ]
 }

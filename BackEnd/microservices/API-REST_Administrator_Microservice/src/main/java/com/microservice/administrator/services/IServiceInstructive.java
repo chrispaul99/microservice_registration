@@ -13,7 +13,4 @@ public interface IServiceInstructive {
 	public Instructive findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
 	public List<Instructive> findAll(); //List
-	
-	public List<Instructive> findByFirstName(String firstName);
-	public List<Instructive> findByLastName(String lastName);
 }

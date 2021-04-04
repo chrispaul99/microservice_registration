@@ -47,12 +47,6 @@ public class PeriodController {
 		return service.findAll();
 	}
 	
-	@GetMapping("/listByLastName")
-	public List<Period> listByLastname(@PathParam(value = "lastName") String lastName){
-		return service.findByLastName(lastName);
-	}
-	
-	
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)

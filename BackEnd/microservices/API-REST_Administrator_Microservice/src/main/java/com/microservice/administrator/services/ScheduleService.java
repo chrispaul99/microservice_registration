@@ -50,18 +50,4 @@ public class ScheduleService implements IServiceSchedule{
 		return (List<Schedule>) ScheduleService.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Schedule> findByFirstName(String firstName) {
-		return ScheduleService.findByFirstName(firstName);
-	}
-
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Schedule> findByLastName(String lastName) {
-		return ScheduleService.findByLastName(lastName);
-	}
-
-
 }

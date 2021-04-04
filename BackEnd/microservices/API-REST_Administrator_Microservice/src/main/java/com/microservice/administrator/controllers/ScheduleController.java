@@ -47,13 +47,6 @@ public class ScheduleController {
 		return service.findAll();
 	}
 	
-	@GetMapping("/listByLastName")
-	public List<Schedule> listByLastname(@PathParam(value = "lastName") String lastName){
-		return service.findByLastName(lastName);
-	}
-	
-	
-	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Schedule create(

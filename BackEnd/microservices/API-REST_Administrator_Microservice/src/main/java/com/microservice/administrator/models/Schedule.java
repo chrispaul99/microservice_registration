@@ -1,7 +1,6 @@
 package com.microservice.administrator.models;
 import java.util.Calendar;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

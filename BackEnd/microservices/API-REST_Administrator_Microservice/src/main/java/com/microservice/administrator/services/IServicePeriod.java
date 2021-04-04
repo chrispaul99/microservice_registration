@@ -13,7 +13,4 @@ public interface IServicePeriod {
 	public Period findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
 	public List<Period> findAll(); //List
-	
-	public List<Period> findByFirstName(String firstName);
-	public List<Period> findByLastName(String lastName);
 }

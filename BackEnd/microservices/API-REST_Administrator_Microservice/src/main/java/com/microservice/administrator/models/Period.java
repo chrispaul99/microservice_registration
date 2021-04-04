@@ -4,11 +4,13 @@ import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +18,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
+@Table(name = "Periods")
+@Entity
 public class Period {
 	@Id
 	@Column(name="id_period")
@@ -48,9 +51,6 @@ public class Period {
 	@Column(name="status")
 	private Boolean status;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_instructive")
-	 private Instructive instructive;
 
 	public Period() {
 	}
@@ -106,17 +106,6 @@ public class Period {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-
-	
-
-	public Instructive getInstructive() {
-		return instructive;
-	}
-
-	public void setInstructive(Instructive instructive) {
-		this.instructive = instructive;
-	}
-
 
 	
 
