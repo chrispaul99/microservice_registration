@@ -23,7 +23,7 @@ export class EstudianteService {
   }
 
   retrieve(): Observable<string> {
-    return this.http.get<string>(`${this.url}/message`, environment.httpOptions)
+    return this.http.get<string>(`${this.url}`, environment.httpOptions)
       .pipe(retry(1));
   }
 
