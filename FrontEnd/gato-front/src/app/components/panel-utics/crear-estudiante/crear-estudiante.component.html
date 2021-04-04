@@ -105,6 +105,24 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Tipo:</label>
+                    <div class="col-sm-8">
+                        <input formControlName="tipo" [(ngModel)]="estudiante.type" [ngClass]="{'is-invalid': submitted && f.tipo.errors}" type="text" class="form-control" placeholder="Tipo">
+                        <div *ngIf="submitted && f.tipo.errors">
+                            <div *ngIf="f.tipo.errors.required" class="text-c-red">El tipo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Número de Créditos:</label>
+                    <div class="col-sm-8">
+                        <input formControlName="numCreditos" [(ngModel)]="estudiante.num_credit" [ngClass]="{'is-invalid': submitted && f.numCreditos.errors}" type="text" class="form-control" placeholder="Número de Créditos">
+                        <div *ngIf="submitted && f.numCreditos.errors">
+                            <div *ngIf="f.numCreditos.errors.required" class="text-c-red">El número de créditos es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <div class="col-sm-12 d-flex justify-content-between">
                         <button (click)="onReset()" type="button" class="btn btn-danger btn-mat m-b-0">Cancelar</button>
                         <button type="submit" class="btn btn-primary btn-mat m-b-0">Guardar</button>

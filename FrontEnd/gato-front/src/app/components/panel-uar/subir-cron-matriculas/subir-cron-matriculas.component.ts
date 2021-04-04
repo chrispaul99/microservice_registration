@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Periodo } from '../../../models/Periodo/periodo';
+import { Cronograma } from '../../../models/Cronograma/cronograma';
 
 @Component({
   selector: 'app-subir-cron-matriculas',
@@ -12,7 +12,7 @@ export class SubirCronMatriculasComponent implements OnInit {
 
   form: FormGroup;
   submitted = false;
-  periodo: Periodo = new Periodo();
+  cronograma: Cronograma = new Cronograma();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,7 +20,11 @@ export class SubirCronMatriculasComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      archivo: ['', [Validators.required]],
+      min: ['', [Validators.required]],
+      max: ['', [Validators.required]],
+      tipo: ['', [Validators.required]],
+      desc: ['', [Validators.required]],
+      fecha: ['', [Validators.required]],
     });
   }
 
@@ -29,7 +33,6 @@ export class SubirCronMatriculasComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.periodo.status = false;
     this.submitted = true;
     if (this.form.invalid) {
       Swal.fire({
@@ -56,7 +59,7 @@ export class SubirCronMatriculasComponent implements OnInit {
   onReset(): void {
     this.submitted = false;
     this.form.reset();
-    this.periodo = new Periodo();
+    this.cronograma = new Cronograma();
   }
 
 }
