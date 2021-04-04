@@ -6,11 +6,47 @@
         <div class="card-block">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Archivo:</label>
+                    <label class="col-sm-4 col-form-label">Mínimo de Créditos:</label>
                     <div class="col-sm-8">
-                        <input formControlName="archivo" [(ngModel)]="periodo.cronograma" [ngClass]="{'is-invalid': submitted && f.archivo.errors}" type="file" class="form-control">
-                        <div *ngIf="submitted && f.archivo.errors">
-                            <div *ngIf="f.archivo.errors.required" class="text-c-red">El archivo es requerido</div>
+                        <input formControlName="min" [(ngModel)]="cronograma.credit_min" [ngClass]="{'is-invalid': submitted && f.min.errors}" type="number" class="form-control" placeholder="Mínimo de Créditos">
+                        <div *ngIf="submitted && f.min.errors">
+                            <div *ngIf="f.min.errors.required" class="text-c-red">El mínimo de créditos es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Máximo de Créditos:</label>
+                    <div class="col-sm-8">
+                        <input formControlName="max" [(ngModel)]="cronograma.credit_max" [ngClass]="{'is-invalid': submitted && f.max.errors}" type="number" class="form-control" placeholder="Máximo de Créditos">
+                        <div *ngIf="submitted && f.max.errors">
+                            <div *ngIf="f.max.errors.required" class="text-c-red">El máximo de créditos es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Tipo:</label>
+                    <div class="col-sm-8">
+                        <input formControlName="tipo" [(ngModel)]="cronograma.type" [ngClass]="{'is-invalid': submitted && f.tipo.errors}" type="text" class="form-control" placeholder="Tipo">
+                        <div *ngIf="submitted && f.tipo.errors">
+                            <div *ngIf="f.tipo.errors.required" class="text-c-red">El tipo es requerido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Descripción:</label>
+                    <div class="col-sm-8">
+                        <input formControlName="desc" [(ngModel)]="cronograma.description" [ngClass]="{'is-invalid': submitted && f.desc.errors}" type="text" class="form-control" placeholder="Descripción">
+                        <div *ngIf="submitted && f.desc.errors">
+                            <div *ngIf="f.desc.errors.required" class="text-c-red">La descripción es requerida</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Fecha:</label>
+                    <div class="col-sm-8">
+                        <input formControlName="fecha" [(ngModel)]="cronograma.datefrom" [ngClass]="{'is-invalid': submitted && f.fecha.errors}" type="date" class="form-control" placeholder="Fecha">
+                        <div *ngIf="submitted && f.fecha.errors">
+                            <div *ngIf="f.fecha.errors.required" class="text-c-red">La fecha es requerida</div>
                         </div>
                     </div>
                 </div>

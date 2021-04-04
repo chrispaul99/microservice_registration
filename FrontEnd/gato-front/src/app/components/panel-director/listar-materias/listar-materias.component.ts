@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Materia } from '../../../models/Materia/materia';
+import { MateriaService } from '../../../services/Materia/materia.service';
 
 @Component({
   selector: 'app-listar-materias',
@@ -17,6 +18,7 @@ export class ListarMateriasComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private materiaService: MateriaService,
   ) { }
 
   ngOnInit(): void {
@@ -35,9 +37,9 @@ export class ListarMateriasComponent implements OnInit {
   }
 
   listarMaterias(): void{
-    // this.empresaService.list().subscribe(data => {
-    //   this.empresas = data;
-    // });
+    this.materiaService.list().subscribe(data => {
+      this.materias = data;
+    });
   }
 
   eliminar(m: Materia): void {
@@ -52,25 +54,25 @@ export class ListarMateriasComponent implements OnInit {
       cancelButtonText: 'Cancelar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        // this.empresaService.delete(m).subscribe(() => {
-        //   Swal.fire(
-        //     'Borrado!',
-        //     'La materia fue eliminada.',
-        //     'success'
-        //   );
-        //   this.listarMaterias();
-        // });
+        this.materiaService.delete(m).subscribe(() => {
+          Swal.fire(
+            'Borrado!',
+            'La materia fue eliminada.',
+            'success'
+          );
+          this.listarMaterias();
+        });
       }
     });
   }
 
   cargarData(id: number): void {
-    // this.empresaService.retrieve(id).subscribe(data => {
-    //   this.materia = data;
-    // }, (error) => console.log(error),
-    // () => {
-    //   this.listarMaterias();
-    // });
+    this.materiaService.retrieve(id).subscribe(data => {
+      this.materia = data;
+    }, (error) => console.log(error),
+    () => {
+      this.listarMaterias();
+    });
   }
 
   onSubmit(): void {
@@ -83,18 +85,18 @@ export class ListarMateriasComponent implements OnInit {
       });
       return;
     }
-    // this.empresaService.create(this.materia).subscribe(() => {
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Materia Modificada',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   });
-    //   this.materia = new Materia();
-    //   this.submitted = false;
-    //   location.reload();
-    // });
+    this.materiaService.create(this.materia).subscribe(() => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Materia Modificada',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.materia = new Materia();
+      this.submitted = false;
+      location.reload();
+    });
   }
 
 }

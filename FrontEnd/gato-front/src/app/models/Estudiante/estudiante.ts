@@ -5,6 +5,8 @@ export class Estudiante {
     registration_line: boolean;
     status: boolean;
     firstName: string;
+    type: string;
+    num_credit: number;
     lastName: string;
     birth: Date;
     numberCardId: string;

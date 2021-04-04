@@ -36,7 +36,7 @@ public class Student extends Person {
 	@NotEmpty(message = "Ingrese el estado")
 	@NotNull
 	@Column(name="status")
-	private Boolean statis;
+	private Boolean status;
 	
 	
 	public Student() {
@@ -65,10 +65,10 @@ public class Student extends Person {
 		this.registration_line = registration_line;
 	}
 	public Boolean getStatis() {
-		return statis;
+		return status;
 	}
-	public void setStatis(Boolean statis) {
-		this.statis = statis;
+	public void setStatis(Boolean status) {
+		this.status = status;
 	}
 	
 }

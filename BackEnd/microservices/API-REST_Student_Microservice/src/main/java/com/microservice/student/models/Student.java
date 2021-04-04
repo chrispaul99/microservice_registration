@@ -27,6 +27,15 @@ public class Student extends Person {
 	@Column(name="assigned_career")
 	private String assigned_career;
 	
+	@NotNull
+	@Column(name="num_credit")
+	private Integer num_credit;
+
+	@NotEmpty(message = "Ingrese el tipo de estudiante")
+	@NotNull
+	@Size(max= 1, message = "El tipo de estudiante es Z, C o T")
+	@Column(name="type")
+	private String type;
 	
 	@NotNull
 	@Column(name="registration_line")
@@ -67,6 +76,18 @@ public class Student extends Person {
 	}
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+	public int getNum_credit() {
+		return num_credit;
+	}
+	public void setNum_credit(int num_credit) {
+		this.num_credit = num_credit;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

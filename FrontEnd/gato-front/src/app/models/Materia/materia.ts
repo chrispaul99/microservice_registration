@@ -1,9 +1,9 @@
 export class Materia {
-    id: number;
-    nombre: string;
-    carrera: string;
-    nivel: number;
+    idSubject: number;
+    name: string;
+    assigned_career: string;
+    level: number;
     nrc: string;
-    creditos: number;
+    total_credits: number;
     status: boolean;
 }

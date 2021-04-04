@@ -36,6 +36,8 @@ export class CrearEstudianteComponent implements OnInit {
       cedula: ['', [Validators.required]],
       telefono: ['', [Validators.required]],
       carrera: ['', [Validators.required]],
+      tipo: ['', [Validators.required]],
+      numCreditos: ['', [Validators.required]],
     });
   }
 
@@ -56,18 +58,18 @@ export class CrearEstudianteComponent implements OnInit {
       });
       return;
     }
-    // this.estudianteService.create(this.estudiante).subscribe(() => {
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Estudiante Agregado',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   });
-    //   this.estudiante = new Estudiante();
-    //   this.usuario = new Usuario();
-    //   this.onReset();
-    // });
+    this.estudianteService.create(this.estudiante).subscribe(() => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Estudiante Agregado',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.estudiante = new Estudiante();
+      this.usuario = new Usuario();
+      this.onReset();
+    });
   }
 
   onReset(): void {
@@ -75,7 +77,6 @@ export class CrearEstudianteComponent implements OnInit {
     this.form.reset();
     this.estudiante = new Estudiante();
     this.usuario = new Usuario();
-    this.estudianteService.retrieve().subscribe();
   }
 
 }

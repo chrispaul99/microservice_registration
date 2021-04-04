@@ -1,5 +1,5 @@
 export class Instructivo {
-    id: number;
-    archivo: File;
+    idInstructive: number;
+    file: File;
     status: boolean;
     }
