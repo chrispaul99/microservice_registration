@@ -3,6 +3,7 @@ package com.security.server.security.jwt;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
@@ -39,21 +40,23 @@ public class JwtUtils {
         claims.put("username", userPrincipal.getUsername());
         claims.put("email", userPrincipal.getEmail());
 		return Jwts.builder()
+				.setClaims(claims)
+				.setId(UUID.randomUUID().toString())
 				.setSubject((userPrincipal.getUsername()))
 				.setIssuedAt(new Date())
-				.setClaims(claims)
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(key)
 				.compact();
 	}
 
 	public String getUserNameFromJwtToken(String token) {
-		return Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
+		return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
+		//return Jwts.parserBuilder().setSigningKey(key).parseClaimsJws(token).getBody().getSubject();
 	}
 
 	public boolean validateJwtToken(String authToken) {
 		try {
-			Jwts.parser().setSigningKey(key).parseClaimsJws(authToken);
+			Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(authToken);
 			return true;
 		} catch (SignatureException e) {
 			logger.error("Invalid JWT signature: {}", e.getMessage());
