@@ -59,6 +59,15 @@
             "mainClass": "com.microservice.subject.ApiRestSubjectMicroserviceApplication",
             "projectName": "API-REST_Subject_Microservice",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MavenWrapperDownloader",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "MavenWrapperDownloader",
+            "args": ""
         }
     ]
 }

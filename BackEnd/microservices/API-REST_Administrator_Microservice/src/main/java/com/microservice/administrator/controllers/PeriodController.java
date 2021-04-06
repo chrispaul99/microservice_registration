@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,6 @@ import com.microservice.administrator.models.Period;
 import com.microservice.administrator.services.IServiceAdministrator;
 import com.microservice.administrator.services.IServiceInstructive;
 import com.microservice.administrator.services.IServicePeriod;
-
 
 
 @RestController

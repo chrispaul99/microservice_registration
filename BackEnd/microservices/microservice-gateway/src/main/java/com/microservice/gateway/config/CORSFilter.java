@@ -21,9 +21,11 @@ public class CORSFilter implements WebFluxConfigurer {
    public void addCorsMappings(CorsRegistry registry) {
       registry.addMapping("/**")
             .allowCredentials(true)
-            .allowedOrigins("*")
+            .allowedOrigins("http://localhost:4200")
             .allowedHeaders("*")
-            .allowedMethods("*");
+            .allowedMethods("GET", "POST", "DELETE", "PUT")
+            .maxAge(3600)
+            .exposedHeaders(HttpHeaders.SET_COOKIE);
    }
 
    @Bean
@@ -32,7 +34,8 @@ public class CORSFilter implements WebFluxConfigurer {
       corsConfiguration.setAllowCredentials(true);
       corsConfiguration.addAllowedHeader("*");
       corsConfiguration.addAllowedMethod("*");
-      corsConfiguration.addAllowedOrigin("*");
+      corsConfiguration.addAllowedOrigin("http://localhost:4200");
+      corsConfiguration.addExposedHeader(HttpHeaders.SET_COOKIE);
       UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
       corsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
       return new CorsWebFilter(corsConfigurationSource);

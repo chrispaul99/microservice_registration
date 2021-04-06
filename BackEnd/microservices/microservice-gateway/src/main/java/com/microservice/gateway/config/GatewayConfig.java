@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+// @CrossOrigin(origins = "*", maxAge = 3600)
 @Configuration
-@CrossOrigin(origins = "*")
 @EnableHystrix
 public class GatewayConfig {
 
@@ -25,6 +25,9 @@ public class GatewayConfig {
                 .route("microservice-administrator", r -> r.path("/api/gestion/**")
                         .filters(f -> f.filter(filter).stripPrefix(2))
                         .uri("http://localhost:8082/"))
+                .route("microservice-subject", r -> r.path("/api/subject/**")
+                        .filters(f -> f.filter(filter).stripPrefix(2))
+                        .uri("http://localhost:8083/"))
                 .route("microservice-security", r -> r.path("/api/security/**")
                         .filters(f -> f.filter(filter).stripPrefix(2))
                         .uri("http://localhost:8084/"))

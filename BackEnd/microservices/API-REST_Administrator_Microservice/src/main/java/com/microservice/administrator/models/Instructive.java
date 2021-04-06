@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table(name = "Instrutives")
 @Entity
 public class Instructive {
@@ -26,6 +28,7 @@ public class Instructive {
 	@Column(name="status")
 	private Boolean status;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "instructive", cascade = CascadeType.ALL)
     private Period period;
 	
