@@ -1,0 +1,66 @@
+package com.microservice.registration.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.microservice.registration.models.Registration;
+import com.microservice.registration.repositories.IRegistrationRepository;
+
+
+@Service
+public class RegistrationService implements IServiceRegistration{
+	
+	@Autowired
+	private IRegistrationRepository RegistrationService;
+	
+	@Override
+	@Transactional
+	public void save(Registration myRegistration) {
+		try {
+			RegistrationService.save(myRegistration);
+		} catch (Exception e) {
+			throw e;
+		}
+		
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Registration findById(Long id) {
+		return RegistrationService.findById(id).get();
+	}
+
+	@Override
+	public void delete(Long id) {
+		try {
+			RegistrationService.deleteById(id);
+		} catch (Exception e) {
+			throw e;
+		}
+		
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Registration> findAll() {
+		return (List<Registration>) RegistrationService.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Registration> findByFirstName(String firstName) {
+		return RegistrationService.findByFirstName(firstName);
+	}
+
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Registration> findByLastName(String lastName) {
+		return RegistrationService.findByLastName(lastName);
+	}
+
+
+}

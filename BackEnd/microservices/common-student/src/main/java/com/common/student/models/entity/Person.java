@@ -1,4 +1,4 @@
-package com.microservice.registration.models;
+package com.common.student.models.entity;
 
 import java.util.Calendar;
 

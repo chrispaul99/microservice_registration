@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import com.common.student.models.entity.Student;
 import com.microservice.student.exceptions.StudentNotFoundException;
-import com.microservice.student.models.Student;
 import com.microservice.student.services.IServiceStudent;
 
 

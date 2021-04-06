@@ -1,4 +1,4 @@
-package com.microservice.student.models;
+package com.common.student.models.entity;
 
 
 import javax.persistence.Column;

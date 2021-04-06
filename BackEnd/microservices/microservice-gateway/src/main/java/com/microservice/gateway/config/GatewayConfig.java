@@ -26,6 +26,9 @@ public class GatewayConfig {
                 .route("microservice-security", r -> r.path("/api/security/**")
                         .filters(f -> f.filter(filter).stripPrefix(2))
                         .uri("http://localhost:8084/"))
+                .route("microservice-registration", r -> r.path("/api/registration/**")
+                        .filters(f -> f.filter(filter).stripPrefix(2))
+                        .uri("http://localhost:8085/"))
                         
                
                 .build();

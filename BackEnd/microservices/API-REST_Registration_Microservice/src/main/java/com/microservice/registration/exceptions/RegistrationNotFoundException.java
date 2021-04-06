@@ -1,9 +1,9 @@
 package com.microservice.registration.exceptions;
 
-public class StudentNotFoundException extends RuntimeException {
+public class RegistrationNotFoundException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-	public StudentNotFoundException(Long id)
+	public RegistrationNotFoundException(Long id)
 	{
 		super("Estudiente no se encuentra : " + id);
 	}

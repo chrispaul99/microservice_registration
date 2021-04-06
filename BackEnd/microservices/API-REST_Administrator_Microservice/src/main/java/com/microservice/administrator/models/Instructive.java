@@ -19,8 +19,8 @@ public class Instructive {
 	private Long idInstructive;
 	@NotEmpty(message = "Ingrese el instructivo")
 	@NotNull
-	@Column(name="file")
-	private String file;
+	@Column(name="document")
+	private String document;
 	
 	@NotNull
 	@Column(name="status")
@@ -48,12 +48,12 @@ public class Instructive {
 		this.idInstructive = idInstructive;
 	}
 
-	public String getFile() {
-		return file;
+	public String getDocument() {
+		return document;
 	}
 
-	public void setFile(String file) {
-		this.file = file;
+	public void setFile(String document) {
+		this.document = document;
 	}
 
 	public Boolean getStatus() {
