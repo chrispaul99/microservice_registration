@@ -1,6 +1,7 @@
 package com.microservice.student.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
@@ -20,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.common.student.models.entity.Student;
+import com.common.entities.models.Registration;
 import com.microservice.student.exceptions.StudentNotFoundException;
+import com.microservice.student.models.StudentData;
+import com.microservice.student.models.StudentRegistration;
 import com.microservice.student.services.IServiceStudent;
 
 
@@ -33,12 +36,34 @@ public class StudentController {
 	private IServiceStudent service;
 	
 	@GetMapping("/{id}")
-	public Student retrieve(@PathVariable(value = "id") Long id){
-		Student student = service.findById(id);
+	public StudentData retrieve(@PathVariable(value = "id") Long id){
+		StudentData student = service.findById(id);
 		if (student == null)
 			throw new StudentNotFoundException(id);
 		return student;
 	}
+	@DeleteMapping("/delete-matricula/{id}")
+	public ResponseEntity<?> eliminarAlumnoMatriculaPorId(@PathVariable Long id) {
+		
+		service.eliminarMatriculaPorAlumno(id);
+		return ResponseEntity.noContent().build();
+	}
+	@GetMapping("/registrations-by-id")
+	public ResponseEntity<?> retrievebyregistrations(@PathVariable(value = "id") Long id){
+		StudentData student = service.findById(id);
+		if (student == null)
+			throw new StudentNotFoundException(id);
+		if(!student.getRegistrations_student().isEmpty()){
+			List<Long> ids = student.getRegistrations_student().stream()
+					.map(ca -> ca.getId()).collect(Collectors.toList());
+			
+			List<Registration> registrations = (List<Registration>) service.obtenerMatriculasPorStudent(ids);
+			
+			student.setRegistrations(registrations);
+		}
+		return ResponseEntity.ok().body(student);
+	}
+
 	@GetMapping("/message")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String test() {
@@ -47,22 +72,34 @@ public class StudentController {
 	}
 	
 	@GetMapping
-	public List<Student> list(){
+	public List<StudentData> list(){
 		return service.findAll();
+	}
+
+	@GetMapping("/registration")
+	public ResponseEntity<?> listar()
+	{
+		List<StudentData> cursos = service.findAll().stream().map(c -> {
+			c.getRegistrations_student().forEach(ca -> {
+				Registration registration = new Registration();
+				registration.setIdRegistration(ca.getIdRegistration());
+				c.addRegistration(registration);
+			});
+			return c;
+		}).collect(Collectors.toList());
+		return ResponseEntity.ok().body(cursos);
 	}
 	
 	@GetMapping("/listByLastName")
-	public List<Student> listByLastname(@PathParam(value = "lastName") String lastName){
+	public List<StudentData> listByLastname(@PathParam(value = "lastName") String lastName){
 		return service.findByLastName(lastName);
 	}
 	
-	
-	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Student create(
+	public StudentData create(
 			@Valid
-			@RequestBody Student student
+			@RequestBody StudentData student
 		) {
 		service.save(student);
 		return student;
@@ -71,8 +108,8 @@ public class StudentController {
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Student student, @PathVariable Long id) {
-        Student studentOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody StudentData student, @PathVariable Long id) {
+        StudentData studentOptional = service.findById(id);
 
         if (studentOptional==null)
             return ResponseEntity.notFound().build();
@@ -89,5 +126,38 @@ public class StudentController {
         service.delete(id);
         return ResponseEntity.ok().build();
     }
+	@PutMapping("/{id}/registrations")
+	public ResponseEntity<?> asignarMatriculas(@RequestBody List<Registration> registrations, @PathVariable Long id) {
 
-}
+		StudentData stDb = this.service.findById(id);
+
+		if(stDb == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		registrations.forEach(a -> {
+
+			StudentRegistration registration_std = new StudentRegistration();
+			registration_std.setIdRegistration(a.getIdRegistration());
+			registration_std.setStudent(stDb);
+			stDb.addRegistration(registration_std);
+		});
+		this.service.save(stDb);
+		return ResponseEntity.status(HttpStatus.CREATED).body(stDb);
+	}
+
+	@PutMapping("/{id}/delete-registration")
+	public ResponseEntity<?> eliminarMatricula(@RequestBody Registration registration, @PathVariable Long id) {
+
+		StudentData stDb = this.service.findById(id);
+
+		if(stDb == null) {
+			return ResponseEntity.notFound().build();
+		}
+		StudentRegistration registration_std  = new StudentRegistration();
+		registration_std.setIdRegistration(registration.getIdRegistration());
+		stDb.removeRegistration(registration_std);
+		this.service.save(stDb);
+		return ResponseEntity.status(HttpStatus.CREATED).body(stDb);
+	}	
+}//

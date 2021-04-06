@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.microservice.administrator.models.Period;
+import com.common.entities.models.Period;
+import com.microservice.administrator.models.PeriodData;
 import com.microservice.administrator.repositories.IPeriodRepository;
 
 
@@ -19,7 +20,7 @@ public class PeriodService implements IServicePeriod{
 	
 	@Override
 	@Transactional
-	public void save(Period myPeriod) {
+	public void save(PeriodData myPeriod) {
 		try {
 			PeriodService.save(myPeriod);
 		} catch (Exception e) {
@@ -30,7 +31,7 @@ public class PeriodService implements IServicePeriod{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Period findById(Long id) {
+	public PeriodData findById(Long id) {
 		return PeriodService.findById(id).get();
 	}
 
@@ -46,8 +47,8 @@ public class PeriodService implements IServicePeriod{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Period> findAll() {
-		return (List<Period>) PeriodService.findAll();
+	public List<PeriodData> findAll() {
+		return (List<PeriodData>) PeriodService.findAll();
 	}
 
 }

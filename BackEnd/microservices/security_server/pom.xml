@@ -43,6 +43,11 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>com.common.entities</groupId>
+			<artifactId>common-entities</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>

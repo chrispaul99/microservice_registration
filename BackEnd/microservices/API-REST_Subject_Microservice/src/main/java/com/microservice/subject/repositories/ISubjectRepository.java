@@ -1,6 +1,6 @@
 package com.microservice.subject.repositories;
 
-import com.common.subject.models.entity.Subject;
+import com.common.entities.models.Subject;
 
 import org.springframework.data.repository.CrudRepository;
 

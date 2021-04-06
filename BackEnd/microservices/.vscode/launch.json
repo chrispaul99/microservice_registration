@@ -59,6 +59,7 @@
             "mainClass": "com.microservice.subject.ApiRestSubjectMicroserviceApplication",
             "projectName": "API-REST_Subject_Microservice",
             "args": ""
+<<<<<<< HEAD
         },
         {
             "type": "java",
@@ -68,6 +69,8 @@
             "console": "internalConsole",
             "mainClass": "MavenWrapperDownloader",
             "args": ""
+=======
+>>>>>>> origin/dev
         }
     ]
 }

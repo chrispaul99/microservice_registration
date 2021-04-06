@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.microservice.administrator.models.Administrator;
+import com.microservice.administrator.models.AdministradorData;
 import com.microservice.administrator.repositories.IAdministratorRepository;
 
 
@@ -19,7 +18,7 @@ public class AdministratorService implements IServiceAdministrator{
 	
 	@Override
 	@Transactional
-	public void save(Administrator myAdministrator) {
+	public void save(AdministradorData myAdministrator) {
 		try {
 			AdministratorService.save(myAdministrator);
 		} catch (Exception e) {
@@ -30,7 +29,7 @@ public class AdministratorService implements IServiceAdministrator{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Administrator findById(Long id) {
+	public AdministradorData findById(Long id) {
 		return AdministratorService.findById(id).get();
 	}
 
@@ -46,8 +45,8 @@ public class AdministratorService implements IServiceAdministrator{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Administrator> findAll() {
-		return (List<Administrator>) AdministratorService.findAll();
+	public List<AdministradorData> findAll() {
+		return (List<AdministradorData>) AdministratorService.findAll();
 	}
 
 

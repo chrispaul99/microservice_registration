@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Schedule;
 import com.microservice.administrator.exceptions.ScheduleNotFoundException;
-import com.microservice.administrator.models.Schedule;
+import com.microservice.administrator.models.ScheduleData;
 import com.microservice.administrator.services.IServiceSchedule;
 
 
@@ -40,15 +41,15 @@ public class ScheduleController {
 	}
 	
 	@GetMapping
-	public List<Schedule> list(){
+	public List<ScheduleData> list(){
 		return service.findAll();
 	}
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Schedule create(
+	public ScheduleData create(
 			@Valid
-			@RequestBody Schedule Schedule
+			@RequestBody ScheduleData Schedule
 		) {
 		service.save(Schedule);
 		return Schedule;
@@ -57,7 +58,7 @@ public class ScheduleController {
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Schedule Schedule, @PathVariable Long id) {
+	public ResponseEntity<Object> update(@RequestBody ScheduleData Schedule, @PathVariable Long id) {
         Schedule ScheduleOptional = service.findById(id);
 
         if (ScheduleOptional==null)

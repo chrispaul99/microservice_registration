@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-@EntityScan({"com.common.subject.models.entity"})
+@EntityScan("com.common.entities.models")
 public class ApiRestSubjectMicroserviceApplication {
 
 	public static void main(String[] args) {

@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.microservice.administrator.models.Schedule;
+import com.common.entities.models.Schedule;
+import com.microservice.administrator.models.ScheduleData;
 import com.microservice.administrator.repositories.IScheduleRepository;
 
 
@@ -19,7 +20,7 @@ public class ScheduleService implements IServiceSchedule{
 	
 	@Override
 	@Transactional
-	public void save(Schedule mySchedule) {
+	public void save(ScheduleData mySchedule) {
 		try {
 			ScheduleService.save(mySchedule);
 		} catch (Exception e) {
@@ -30,7 +31,7 @@ public class ScheduleService implements IServiceSchedule{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Schedule findById(Long id) {
+	public ScheduleData findById(Long id) {
 		return ScheduleService.findById(id).get();
 	}
 
@@ -46,8 +47,8 @@ public class ScheduleService implements IServiceSchedule{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Schedule> findAll() {
-		return (List<Schedule>) ScheduleService.findAll();
+	public List<ScheduleData> findAll() {
+		return (List<ScheduleData>) ScheduleService.findAll();
 	}
 
 }

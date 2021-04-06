@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Instructive;
 import com.microservice.administrator.exceptions.InstructiveNotFoundException;
-import com.microservice.administrator.models.Instructive;
+import com.microservice.administrator.models.InstructiveData;
 import com.microservice.administrator.services.IServiceInstructive;
 
 
@@ -32,23 +33,23 @@ public class InstructiveController {
 	private IServiceInstructive service;
 	
 	@GetMapping("/{id}")
-	public Instructive retrieve(@PathVariable(value = "id") Long id){
-		Instructive Instructive = service.findById(id);
+	public InstructiveData retrieve(@PathVariable(value = "id") Long id){
+		InstructiveData Instructive = service.findById(id);
 		if (Instructive == null)
 			throw new InstructiveNotFoundException(id);
 		return Instructive;
 	}
 	
 	@GetMapping
-	public List<Instructive> list(){
+	public List<InstructiveData> list(){
 		return service.findAll();
 	}
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Instructive create(
+	public InstructiveData create(
 			@Valid
-			@RequestBody Instructive Instructive
+			@RequestBody InstructiveData Instructive
 		) {
 		service.save(Instructive);
 		return Instructive;
@@ -57,8 +58,8 @@ public class InstructiveController {
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Instructive Instructive, @PathVariable Long id) {
-        Instructive InstructiveOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody InstructiveData Instructive, @PathVariable Long id) {
+        InstructiveData InstructiveOptional = service.findById(id);
 
         if (InstructiveOptional==null)
             return ResponseEntity.notFound().build();

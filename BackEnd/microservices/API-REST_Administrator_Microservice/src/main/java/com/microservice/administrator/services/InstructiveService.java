@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.microservice.administrator.models.Instructive;
+import com.microservice.administrator.models.InstructiveData;
 import com.microservice.administrator.repositories.IInstructiveRepository;
 
 
@@ -19,7 +19,7 @@ public class InstructiveService implements IServiceInstructive{
 	
 	@Override
 	@Transactional
-	public void save(Instructive myInstructive) {
+	public void save(InstructiveData myInstructive) {
 		try {
 			InstructiveService.save(myInstructive);
 		} catch (Exception e) {
@@ -30,7 +30,7 @@ public class InstructiveService implements IServiceInstructive{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Instructive findById(Long id) {
+	public InstructiveData findById(Long id) {
 		return InstructiveService.findById(id).get();
 	}
 
@@ -46,8 +46,8 @@ public class InstructiveService implements IServiceInstructive{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Instructive> findAll() {
-		return (List<Instructive>) InstructiveService.findAll();
+	public List<InstructiveData> findAll() {
+		return (List<InstructiveData>) InstructiveService.findAll();
 	}
 
 
