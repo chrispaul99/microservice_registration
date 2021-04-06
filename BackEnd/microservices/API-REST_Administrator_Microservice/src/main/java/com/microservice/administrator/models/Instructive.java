@@ -20,7 +20,6 @@ public class Instructive {
 	@Column(name="file")
 	private String file;
 	
-	@NotEmpty(message = "Seleccione el status")
 	@NotNull
 	@Column(name="status")
 	private Boolean status;

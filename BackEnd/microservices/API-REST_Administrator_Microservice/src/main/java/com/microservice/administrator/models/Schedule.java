@@ -23,15 +23,13 @@ public class Schedule {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idSchedule;
 
-    @NotEmpty(message = "Ingrese los creditos minimos")
 	@NotNull
 	@Column(name="credit_min")
-	private int credit_min;
+	private Integer credit_min;
 
-    @NotEmpty(message = "Ingrese los creditos maximos")
 	@NotNull
 	@Column(name="credit_max")
-	private int credit_max;
+	private Integer credit_max;
 
     @NotEmpty(message = "Ingrese el tipo de estudiante")
 	@NotNull

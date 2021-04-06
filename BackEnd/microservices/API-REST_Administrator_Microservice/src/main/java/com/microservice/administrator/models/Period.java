@@ -36,7 +36,6 @@ public class Period {
 	@Temporal(TemporalType.DATE)
 	private Calendar end_date;
 		
-	@NotEmpty(message = "Seleccione el status")
 	@NotNull
 	@Column(name="status")
 	private Boolean status;
