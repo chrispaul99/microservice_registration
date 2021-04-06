@@ -1,12 +1,12 @@
 package com.microservice.administrator.repositories;
 
-import java.util.List;
+import com.microservice.administrator.models.AdministradorData;
 
 import org.springframework.data.repository.CrudRepository;
 
 
 
 
-public interface IAdministratorRepository extends CrudRepository<com.common.entities.models.Administrator, Long> {
+public interface IAdministratorRepository extends CrudRepository<AdministradorData, Long> {
 
 }

@@ -1,7 +1,7 @@
 package com.microservice.administrator.repositories;
 
 
-import com.common.entities.models.Period;
+import com.microservice.administrator.models.PeriodData;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 
 
 
-public interface IPeriodRepository extends CrudRepository<Period, Long> {
+public interface IPeriodRepository extends CrudRepository<PeriodData, Long> {
 
 }

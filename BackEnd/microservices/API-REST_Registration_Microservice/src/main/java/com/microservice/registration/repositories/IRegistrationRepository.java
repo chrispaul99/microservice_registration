@@ -13,5 +13,6 @@ public interface IRegistrationRepository extends CrudRepository<Registration, Lo
 	
 	public List<Registration> findByFirstName(String firstName);
 	public List<Registration> findByLastName(String lastName);
+	public Iterable<Registration> findAllById(Iterable<Long> ids);
 
 }

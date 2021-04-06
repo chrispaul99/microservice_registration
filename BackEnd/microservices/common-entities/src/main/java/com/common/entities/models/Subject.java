@@ -52,12 +52,12 @@ public class Subject {
 	@Column(name="status")
 	private Boolean status;
 
-    @ManyToOne		
-	@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
-	private Period period;
-
-    @OneToOne(mappedBy = "subject", cascade = CascadeType.ALL)
-    private Registration registration;
+    //@ManyToOne		
+	//@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
+	//private Period period;
+//
+    //@OneToOne(mappedBy = "subject", cascade = CascadeType.ALL)
+    //private Registration registration;
 
     public Subject() {
     }
@@ -130,20 +130,20 @@ public class Subject {
         this.total_credits = total_credits;
     }
 
-    public Period getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(Period period) {
-        this.period = period;
-    }
-
-    public Registration getRegistration() {
-        return registration;
-    }
-
-    public void setRegistration(Registration registration) {
-        this.registration = registration;
-    }
-
+    //public Period getPeriod() {
+    //    return period;
+    //}
+//
+    //public void setPeriod(Period period) {
+    //    this.period = period;
+    //}
+//
+    //public Registration getRegistration() {
+    //    return registration;
+    //}
+//
+    //public void setRegistration(Registration registration) {
+    //    this.registration = registration;
+    //}
+//
 }

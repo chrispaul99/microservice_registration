@@ -53,17 +53,13 @@ public class Registration{
 	@Column(name="status")
 	private Boolean status;
 	
-	@JoinColumn(name="fk_student",referencedColumnName="id_student")
-	@ManyToOne
-	private Student student;
-	
-	@OneToOne(cascade = CascadeType.ALL)		
-	@JoinColumn(name = "fk_subject", referencedColumnName = "id_subject")
-	private Subject subject;
-
-	@OneToOne(cascade = CascadeType.ALL)		
-	@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
-	private Period period;
+	//@OneToOne(cascade = CascadeType.ALL)		
+	//@JoinColumn(name = "fk_subject", referencedColumnName = "id_subject")
+	//private Subject subject;
+//
+	//@OneToOne(cascade = CascadeType.ALL)		
+	//@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
+	//private Period period;
 	
 	 
 
@@ -114,21 +110,13 @@ public class Registration{
 		this.status = status;
 	}
 
-	public Student getStudent() {
-		return student;
-	}
+	//public Subject getSubject() {
+	//	return subject;
+	//}
 
-	public void setStudent(Student student) {
-		this.student = student;
-	}
-
-	public Subject getSubject() {
-		return subject;
-	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
-	}
+	//public void setSubject(Subject subject) {
+	//	this.subject = subject;
+	//}
 
 	
 	

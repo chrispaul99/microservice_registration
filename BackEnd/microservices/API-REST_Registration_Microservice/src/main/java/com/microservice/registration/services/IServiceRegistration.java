@@ -12,4 +12,6 @@ public interface IServiceRegistration {
 	public Registration findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
 	public List<Registration> findAll(); //List
+	public Iterable<Registration> findAllById(Iterable<Long> ids);
+	public void eliminarAlumnoMatriculaPorId(Long id) ;
 }

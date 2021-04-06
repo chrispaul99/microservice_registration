@@ -49,6 +49,16 @@
             "mainClass": "com.microservice.gateway.MicroserviceGatewayApplication",
             "projectName": "microservice-gateway",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiRestSubjectMicroserviceApplication<API-REST_Subject_Microservice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.microservice.subject.ApiRestSubjectMicroserviceApplication",
+            "projectName": "API-REST_Subject_Microservice",
+            "args": ""
         }
     ]
 }

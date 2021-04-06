@@ -2,32 +2,16 @@ package com.common.entities.models;
 
 
 import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-@Table(name = "Students")
-@Entity
-public class Student extends Person {
-	
-	@Id
-	@Column(name="id_student")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idStudent;
-	
+@MappedSuperclass
+public abstract class Student extends Person {
+		
 	@NotEmpty(message = "Ingrese la carrera asignada")
 	@NotNull
 	@Size(min = 2, message = "La carrera asignada debe tener al menos 2 caracteres")
@@ -52,27 +36,13 @@ public class Student extends Person {
 	@Column(name="status")
 	private Boolean status;
 
-	@OneToMany(mappedBy="student",fetch=FetchType.LAZY)
-		private List<Registration> registrations; 
-	
-	@OneToOne(cascade = CascadeType.ALL)		
-	@JoinColumn(name = "fk_user", referencedColumnName = "id")
-	private User user;
-	
-	
-	public Student() {
-		super();
-	}
-	public Student(Long idStudent) {
-		super();
-		this.idStudent = idStudent;
-	}
-	public Long getIdStudent() {
-		return idStudent;
-	}
-	public void setIdStudent(Long idStudent) {
-		this.idStudent = idStudent;
-	}
+	@Transient
+	List<Registration> registrations;
+
+	//@OneToOne(cascade = CascadeType.ALL)		
+	//@JoinColumn(name = "fk_user", referencedColumnName = "id")
+	//private User user;
+
 	public String getAssigned_career() {
 		return assigned_career;
 	}
@@ -106,11 +76,19 @@ public class Student extends Person {
 	public void setRegistrations(List<Registration> registrations) {
 		this.registrations = registrations;
 	}
-	public User getUser() {
-		return user;
+	public void addRegistration(Registration regis) {
+		this.registrations.add(regis);
 	}
-	public void setUser(User user) {
-		this.user = user;
+	
+	public void removeRegistration(Registration regis) {
+		this.registrations.remove(regis);
 	}
+
+	//public User getUser() {
+	//	return user;
+	//}
+	//public void setUser(User user) {
+	//	this.user = user;
+	//}
 	
 }

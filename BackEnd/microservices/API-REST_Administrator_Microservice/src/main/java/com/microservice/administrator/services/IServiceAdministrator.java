@@ -2,15 +2,15 @@ package com.microservice.administrator.services;
 
 import java.util.List;
 
-import com.common.entities.models.Administrator;
+import com.microservice.administrator.models.AdministradorData;
 
 
 
 
 public interface IServiceAdministrator {
 
-	public void save(Administrator Administrator); //Create-Update
-	public Administrator findById(Long id); //Retrieve
+	public void save(AdministradorData Administrator); //Create-Update
+	public AdministradorData findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
-	public List<Administrator> findAll(); //List
+	public List<AdministradorData> findAll(); //List
 }

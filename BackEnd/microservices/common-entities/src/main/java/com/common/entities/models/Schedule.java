@@ -3,13 +3,12 @@ import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
@@ -18,14 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Table(name = "Schedules")
-@Entity
-public class Schedule {
-    @Id
-	@Column(name="id_shedule")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idSchedule;
-
+@MappedSuperclass
+public abstract class Schedule {
     @NotEmpty(message = "Ingrese los creditos minimos")
 	@NotNull
 	@Column(name="credit_min")
@@ -52,24 +45,6 @@ public class Schedule {
 	@Column(name="description")
 	private String descripcion;
 
-	@OneToOne(cascade = CascadeType.ALL)		
-	@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
-	private Period period;
-
-	public Schedule() {
-	}
-
-	public Schedule(Long idSchedule) {
-		this.idSchedule = idSchedule;
-	}
-
-	public Long getIdSchedule() {
-		return idSchedule;
-	}
-
-	public void setIdSchedule(Long idSchedule) {
-		this.idSchedule = idSchedule;
-	}
 
 	public int getCredit_min() {
 		return credit_min;
@@ -111,14 +86,6 @@ public class Schedule {
 		this.descripcion = descripcion;
 	}
 
-	public Period getPeriod() {
-		return period;
-	}
-
-	public void setPeriod(Period period) {
-		this.period = period;
-	}
-	
 	
 	
 }

@@ -32,17 +32,17 @@ public class User {
 	@Size(max = 120)
 	private String password;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(	name = "user_roles", 
-				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
-
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Administrator administrator;
-
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Student student;
+	//@ManyToMany(fetch = FetchType.LAZY)
+	//@JoinTable(	name = "user_roles", 
+	//			joinColumns = @JoinColumn(name = "user_id"), 
+	//			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	//private Set<Role> roles = new HashSet<>();
+//
+	//@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    //private Administrator administrator;
+//
+	//@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    //private Student student;
 
 	public User() {
 	}
@@ -85,29 +85,29 @@ public class User {
 		this.password = password;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	public Administrator getAdministrator() {
-		return administrator;
-	}
-
-	public void setAdministrator(Administrator administrator) {
-		this.administrator = administrator;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+	//public Set<Role> getRoles() {
+	//	return roles;
+	//}
+//
+	//public void setRoles(Set<Role> roles) {
+	//	this.roles = roles;
+	//}
+//
+	//public Administrator getAdministrator() {
+	//	return administrator;
+	//}
+//
+	//public void setAdministrator(Administrator administrator) {
+	//	this.administrator = administrator;
+	//}
+//
+	//public Student getStudent() {
+	//	return student;
+	//}
+//
+	//public void setStudent(Student student) {
+	//	this.student = student;
+	//}
 
 	
 }

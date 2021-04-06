@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.common.entities.models.Registration;
+import com.microservice.registration.clients.IStudentFeignClient;
 import com.microservice.registration.repositories.IRegistrationRepository;
 
 
@@ -15,6 +16,8 @@ public class RegistrationService implements IServiceRegistration{
 	
 	@Autowired
 	private IRegistrationRepository RegistrationService;
+	@Autowired
+	private IStudentFeignClient StudentService;
 	
 	@Override
 	@Transactional
@@ -47,6 +50,21 @@ public class RegistrationService implements IServiceRegistration{
 	@Transactional(readOnly = true)
 	public List<Registration> findAll() {
 		return (List<Registration>) RegistrationService.findAll();
+	}
+
+	@Override
+	public Iterable<Registration> findAllById(Iterable<Long> ids) {
+		return RegistrationService.findAllById(ids);
+	}
+
+	@Override
+	public void eliminarAlumnoMatriculaPorId(Long id) {
+		StudentService.eliminarAlumnoMatriculaPorId(id);
+		
+	}
+	@Transactional(readOnly = true)
+	public void deleteById(Long id) {
+		this.eliminarAlumnoMatriculaPorId(id);
 	}
 
 }
