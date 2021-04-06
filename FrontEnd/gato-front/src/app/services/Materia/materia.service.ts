@@ -11,6 +11,7 @@ import { Materia } from '../../models/Materia/materia';
 export class MateriaService {
 
   url = environment.url + '/subject';
+  // url = 'http://localhost:8083/subject';
   constructor(private http: HttpClient) { }
 
   create(m: Materia): Observable<Materia> {

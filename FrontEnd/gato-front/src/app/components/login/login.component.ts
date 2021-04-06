@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Login } from '../../models/Usuario/Usuario';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +21,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: LoginService,
-    private router: Router,
     // private formBuilder: FormBuilder,
   ) {}
 
@@ -64,7 +62,7 @@ export class LoginComponent implements OnInit {
       Swal.fire({
         icon: 'error',
         title: 'Error al autenticar',
-        text: 'Usuario o contraseña incorrecto'
+        text: 'Inténtelo de nuevo'
       });
     });
   }

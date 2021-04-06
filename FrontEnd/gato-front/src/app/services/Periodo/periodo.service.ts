@@ -11,6 +11,7 @@ import { Periodo } from '../../models/Periodo/periodo';
 export class PeriodoService {
 
   url = environment.url + '/gestion/period';
+  // url = 'http://localhost:8082/period';
   constructor(private http: HttpClient) { }
 
   create(p: Periodo): Observable<Periodo> {

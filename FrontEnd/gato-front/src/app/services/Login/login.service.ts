@@ -11,6 +11,7 @@ import { environment } from '../../../environments/environment';
 export class LoginService {
 
   url = environment.url + '/security/authjwt/signin';
+  // url = 'http://localhost:8084/authjwt/signin';
   userToken: string;
   constructor(private http: HttpClient, private router: Router) {
     this.leerToken();
@@ -21,7 +22,7 @@ export class LoginService {
       ...usuario,
       returnSecureToken: true
     };
-    console.log(JSON.stringify(authData));
+    console.log(authData);
     return this.http.post<any>(this.url, authData, environment.httpOptions).pipe(
       map( resp => {
         this.guardarToken( resp.accessToken );
@@ -45,6 +46,7 @@ export class LoginService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('expira');
+    this.router.navigateByUrl('/Login');
   }
   private guardarToken( idToken: string ): void {
 
@@ -100,7 +102,7 @@ export class LoginService {
         this.router.navigateByUrl('/panelEstudiante');
         break;
       case 'A':
-        this.router.navigateByUrl('/panelAdministrador');
+        this.router.navigateByUrl('/panelDirector');
         break;
     }
   }
