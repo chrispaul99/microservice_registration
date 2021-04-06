@@ -1,8 +1,8 @@
 export class Cronograma {
-    id: number;
+    idSchedule: number;
     credit_min: number;
     credit_max: number;
     type: string;
-    datefrom: Date;
-    description: string;
+    date_from: Date;
+    descripcion: string;
 }

@@ -10,7 +10,7 @@ import { Instructivo } from '../../models/Instructivo/instructivo';
 })
 export class InstructivoService {
 
-  url = environment.url + '/instructive';
+  url = environment.url + '/gestion/instructive';
   constructor(private http: HttpClient) { }
 
   create(i: Instructivo): Observable<Instructivo> {

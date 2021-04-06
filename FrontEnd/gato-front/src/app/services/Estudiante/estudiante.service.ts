@@ -22,18 +22,18 @@ export class EstudianteService {
     return this.http.put<any>(this.url, estudianteBody, environment.httpOptions);
   }
 
-  retrieve(): Observable<string> {
-    return this.http.get<string>(`${this.url}`, environment.httpOptions)
+  retrieve(id: number): Observable<Estudiante> {
+    return this.http.get<Estudiante>(`${this.url}/${id}`, environment.httpOptions)
       .pipe(retry(1));
   }
 
-  // delete(p: Persona): Observable<Persona> {
-  //   return this.http.delete<any>(this.url + '/' + p.ID, environment.httpOptions);
-  // }
+  delete(e: Estudiante): Observable<Estudiante> {
+    return this.http.delete<any>(`${this.url}/delete/${e.id}`, environment.httpOptions);
+  }
 
-  // list(): Observable<Persona[]> {
-  //   return this.http.get<Persona[]>(this.url, environment.httpOptions)
-  //     .pipe(retry(1));
-  // }
+  list(): Observable<Estudiante[]> {
+    return this.http.get<Estudiante[]>(this.url, environment.httpOptions)
+      .pipe(retry(1));
+  }
 
 }

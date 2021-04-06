@@ -23,7 +23,6 @@ export class SubirInstructivoUarComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       archivo: ['', [Validators.required]],
-      status: ['', [Validators.required]],
     });
   }
 
@@ -32,7 +31,7 @@ export class SubirInstructivoUarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.instructivo.status = false;
+    this.instructivo.status = true;
     this.submitted = true;
     if (this.form.invalid) {
       Swal.fire({

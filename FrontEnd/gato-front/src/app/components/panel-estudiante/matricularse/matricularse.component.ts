@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Matricula } from '../../../models/Matricula/matricula';
 import { Materia } from '../../../models/Materia/materia';
+import { MateriaService } from '../../../services/Materia/materia.service';
 import { Periodo } from '../../../models/Periodo/periodo';
+import { PeriodoService } from '../../../services/Periodo/periodo.service';
 import { Estudiante } from '../../../models/Estudiante/estudiante';
 
 @Component({
@@ -17,36 +19,66 @@ export class MatricularseComponent implements OnInit {
   submitted = false;
   matricula: Matricula = new Matricula();
   materias: Materia[];
-  materiaSubmit: Materia[];
+  materiaSubmit: Materia[] = [];
   periodos: Periodo[];
-  estudiantes: Estudiante[];
-  // persona: Persona = new Persona();
+  estudiante: Estudiante = new Estudiante();
 
   constructor(
     private formBuilder: FormBuilder,
+    private periodoService: PeriodoService,
+    private materiaService: MateriaService,
   ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      estudiante: ['', [Validators.required]],
       periodo: ['', [Validators.required]],
       materias: ['', [Validators.required]],
       fecha: ['', [Validators.required]],
       tipo: ['', [Validators.required]],
     });
     this.listarMaterias();
-    // Listar Estudiantes
-    // Listar Periodos
+    this.listarPeriodos();
+    // Retreive Estudiante (token?)
   }
 
   listarMaterias(): void {
-    // this.empresaService.list().subscribe(data => {
-    //   this.materias = data;
-    // });
+    this.materiaService.list().subscribe(data => {
+      this.materias = data;
+    });
   }
+
+  listarPeriodos(): void {
+    this.periodoService.list().subscribe(data => {
+      this.periodos = data;
+    });
+  }
+
+  getEstudiante(): void {}
 
   selectMateria(m: Materia): void{
     this.materiaSubmit.push(m);
+  }
+
+  calcularCreditos(): void {
+    for (const m of this.materiaSubmit) {
+      this.matricula.totalCreditos += m.total_credits;
+    }
+  }
+
+  calcularPago(): void {
+    switch (this.matricula.tipo) {
+      case 'P':
+        this.matricula.pagoTotal = 0;
+        break;
+      case 'S':
+        this.matricula.pagoTotal = this.matricula.totalCreditos * 30;
+        break;
+      case 'T':
+        this.matricula.pagoTotal = this.matricula.totalCreditos * 60;
+        break;
+      default:
+        break;
+    }
   }
 
   get f(){
@@ -54,10 +86,10 @@ export class MatricularseComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Definir Status´
-    // Calcular ceditos
-    // Calcular pago
+    this.matricula.status = false;
     this.matricula.materias = this.materiaSubmit;
+    this.calcularCreditos();
+    this.calcularPago();
     this.submitted = true;
     if (this.form.invalid) {
       Swal.fire({

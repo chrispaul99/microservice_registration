@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Materia } from '../../../models/Materia/materia';
 import { MateriaService } from '../../../services/Materia/materia.service';
+import { PeriodoService } from '../../../services/Periodo/periodo.service';
 
 @Component({
   selector: 'app-crear-materia',
@@ -14,10 +15,12 @@ export class CrearMateriaComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   materia: Materia = new Materia();
+  validPeriod = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private materiaService: MateriaService,
+    private periodoService: PeriodoService,
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +31,22 @@ export class CrearMateriaComponent implements OnInit {
       nrc: ['', [Validators.required]],
       creditos: ['', [Validators.required]],
     });
+    this.listarPeriodos();
+  }
+
+  listarPeriodos(): void {
+    this.periodoService.list().subscribe(data => {
+      if (data.length === 0) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Atención!',
+          text: 'No existen periodos registrados',
+        });
+      }
+      else {
+        this.validPeriod = true;
+      }
+    });
   }
 
   get f(){
@@ -35,28 +54,36 @@ export class CrearMateriaComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.materia.status = false;
-    this.submitted = true;
-    if (this.form.invalid) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Error en el formulario',
+    if (this.validPeriod) {
+      this.materia.status = false;
+      this.submitted = true;
+      if (this.form.invalid) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error en el formulario',
+        });
+        return;
+      }
+      this.materiaService.create(this.materia).subscribe(() => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Materia Agregada',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.materia = new Materia();
+        this.submitted = false;
+        this.onReset();
       });
-      return;
+    } else {
+      Swal.fire({
+        icon: 'info',
+        title: 'Registrar Periodo',
+        text: 'Espere hasta que se registre un periodo',
+      });
     }
-    this.materiaService.create(this.materia).subscribe(() => {
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Materia Agregada',
-        showConfirmButton: false,
-        timer: 1500
-      });
-      this.materia = new Materia();
-      this.submitted = false;
-      this.onReset();
-    });
   }
 
   onReset(): void {
