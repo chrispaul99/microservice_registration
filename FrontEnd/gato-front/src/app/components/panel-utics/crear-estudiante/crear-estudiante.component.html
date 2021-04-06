@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Correo institucional:</label>
                     <div class="col-sm-8">
-                        <input formControlName="correo" [(ngModel)]="usuario.correoInstitucional" [ngClass]="{'is-invalid': submitted && f.correo.errors}" type="text" class="form-control" placeholder="Correo institucional">
+                        <input formControlName="correo" [(ngModel)]="usuario.email" [ngClass]="{'is-invalid': submitted && f.correo.errors}" type="text" class="form-control" placeholder="Correo institucional">
                         <div *ngIf="submitted && f.correo.errors">
                             <div *ngIf="f.correo.errors.required" class="text-c-red">El correo institucional es requerido</div>
                         </div>

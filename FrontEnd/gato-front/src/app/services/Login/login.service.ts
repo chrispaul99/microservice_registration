@@ -21,7 +21,7 @@ export class LoginService {
       ...usuario,
       returnSecureToken: true
     };
-    // const personaBody = JSON.stringify(p);
+    console.log(JSON.stringify(authData));
     return this.http.post<any>(this.url, authData, environment.httpOptions).pipe(
       map( resp => {
         this.guardarToken( resp.accessToken );
