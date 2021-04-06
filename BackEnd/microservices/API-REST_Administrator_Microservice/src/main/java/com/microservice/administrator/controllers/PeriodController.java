@@ -52,15 +52,13 @@ public class PeriodController {
 		return service.findAll();
 	}
 	
-	
+	/**REGISTRAR EL PERIODO CUANDO YA CAMBIO EL ESTADO DEL INSTRUCTIVO */
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Object> create(@Valid@RequestBody Period Period) {
 		Instructive ins = serviceinstructive.findById(Period.getInstructive().getIdInstructive());
 		Administrator admin = serviceadmin.findById(Period.getAdministrator().getIdAdministrator());
 		if(ins!=null && admin!=null){
-			ins.setStatus(true);
-			serviceinstructive.save(ins);
 			Period.setAdministrator(admin);
 			Period.setInstructive(ins);
 			service.save(Period);

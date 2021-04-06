@@ -5,3 +5,5 @@ INSERT INTO administrators(birth,first_name,last_name,number_card_id,phone,place
 INSERT INTO administrators(birth,first_name,last_name,number_card_id,phone,place_of_birth,sex) VALUES('1999-09-10','Carla','Castro','1185965412','0986547856','Quito','M');
 
 INSERT INTO instructives(document,status) VALUES('https://github.com/BeardedManStudios/ForgeNetworkingRemastered',false);
+
+INSERT INTO periods(end_date,start_date,status,fk_administrator,fk_insctructive) VALUES('2021-01-01','2021-12-31',1,1);
