@@ -2,7 +2,7 @@ package com.microservice.registration.repositories;
 
 import java.util.List;
 
-import com.microservice.registration.models.Registration;
+import com.common.entities.models.Registration;
 
 import org.springframework.data.repository.CrudRepository;
 

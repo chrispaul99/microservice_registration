@@ -1,6 +1,7 @@
 package com.microservice.administrator.repositories;
 
-import com.microservice.administrator.models.Instructive;
+
+import com.common.entities.models.Instructive;
 
 import org.springframework.data.repository.CrudRepository;
 

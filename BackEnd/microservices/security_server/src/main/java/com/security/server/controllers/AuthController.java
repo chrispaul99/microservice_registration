@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.security.server.models.ERole;
-import com.security.server.models.Role;
-import com.security.server.models.User;
+import com.common.entities.models.ERole;
+import com.common.entities.models.Role;
+import com.common.entities.models.User;
 import com.security.server.payload.request.LoginRequest;
 import com.security.server.payload.request.SignupRequest;
 import com.security.server.payload.response.JwtResponse;

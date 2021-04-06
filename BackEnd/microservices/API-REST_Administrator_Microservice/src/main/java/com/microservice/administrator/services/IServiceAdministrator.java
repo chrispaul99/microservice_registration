@@ -2,7 +2,7 @@ package com.microservice.administrator.services;
 
 import java.util.List;
 
-import com.microservice.administrator.models.Administrator;
+import com.common.entities.models.Administrator;
 
 
 

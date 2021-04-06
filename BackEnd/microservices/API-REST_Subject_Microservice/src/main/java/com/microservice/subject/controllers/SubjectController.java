@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.common.subject.models.entity.Subject;
+import com.common.entities.models.Subject;
 import com.microservice.subject.exceptions.SubjectNotFoundException;
 import com.microservice.subject.services.IServiceSubject;
 

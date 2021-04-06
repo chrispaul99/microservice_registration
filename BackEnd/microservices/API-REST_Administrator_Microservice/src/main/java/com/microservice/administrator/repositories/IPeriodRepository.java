@@ -1,7 +1,7 @@
 package com.microservice.administrator.repositories;
 
 
-import com.microservice.administrator.models.Period;
+import com.common.entities.models.Period;
 
 import org.springframework.data.repository.CrudRepository;
 

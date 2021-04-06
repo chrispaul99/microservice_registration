@@ -2,7 +2,7 @@ package com.microservice.administrator.repositories;
 
 import java.util.List;
 
-import com.microservice.administrator.models.Schedule;
+import com.common.entities.models.Schedule;
 
 import org.springframework.data.repository.CrudRepository;
 

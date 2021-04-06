@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Registration;
 import com.microservice.registration.exceptions.RegistrationNotFoundException;
-import com.microservice.registration.models.Registration;
 import com.microservice.registration.services.IServiceRegistration;
 
 
@@ -46,13 +46,6 @@ public class RegistrationController {
 	public List<Registration> list(){
 		return service.findAll();
 	}
-	
-	@GetMapping("/listByLastName")
-	public List<Registration> listByLastname(@PathParam(value = "lastName") String lastName){
-		return service.findByLastName(lastName);
-	}
-	
-	
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)

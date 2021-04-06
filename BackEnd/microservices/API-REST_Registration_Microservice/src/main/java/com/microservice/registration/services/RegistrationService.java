@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.microservice.registration.models.Registration;
+import com.common.entities.models.Registration;
 import com.microservice.registration.repositories.IRegistrationRepository;
 
 
@@ -48,19 +48,5 @@ public class RegistrationService implements IServiceRegistration{
 	public List<Registration> findAll() {
 		return (List<Registration>) RegistrationService.findAll();
 	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Registration> findByFirstName(String firstName) {
-		return RegistrationService.findByFirstName(firstName);
-	}
-
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<Registration> findByLastName(String lastName) {
-		return RegistrationService.findByLastName(lastName);
-	}
-
 
 }

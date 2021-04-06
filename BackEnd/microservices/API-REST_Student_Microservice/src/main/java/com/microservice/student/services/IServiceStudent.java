@@ -2,7 +2,7 @@ package com.microservice.student.services;
 
 import java.util.List;
 
-import com.common.student.models.entity.Student;
+import com.common.entities.models.Student;
 
 
 

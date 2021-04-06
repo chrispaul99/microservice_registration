@@ -2,8 +2,7 @@ package com.microservice.administrator.services;
 
 import java.util.List;
 
-import com.microservice.administrator.models.Schedule;
-
+import com.common.entities.models.Schedule;
 
 
 

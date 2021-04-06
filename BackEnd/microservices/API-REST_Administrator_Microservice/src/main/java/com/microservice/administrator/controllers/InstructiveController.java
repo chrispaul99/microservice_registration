@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Instructive;
 import com.microservice.administrator.exceptions.InstructiveNotFoundException;
-import com.microservice.administrator.models.Instructive;
 import com.microservice.administrator.services.IServiceInstructive;
 
 

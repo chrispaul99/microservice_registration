@@ -36,8 +36,8 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.common.student</groupId>
-			<artifactId>common-student</artifactId>
+			<groupId>com.common.entities</groupId>
+			<artifactId>common-entities</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>	
 		<dependency>

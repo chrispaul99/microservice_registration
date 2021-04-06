@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.microservice.administrator.models.Administrator;
+import com.common.entities.models.Administrator;
 import com.microservice.administrator.repositories.IAdministratorRepository;
 
 

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Administrator;
 import com.microservice.administrator.exceptions.AdministratorNotFoundException;
-import com.microservice.administrator.models.Administrator;
 import com.microservice.administrator.services.IServiceAdministrator;
 
 

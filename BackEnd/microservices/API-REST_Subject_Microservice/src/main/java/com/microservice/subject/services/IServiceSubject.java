@@ -2,7 +2,7 @@ package com.microservice.subject.services;
 
 import java.util.List;
 
-import com.common.subject.models.entity.Subject;
+import com.common.entities.models.Subject;
 
 
 

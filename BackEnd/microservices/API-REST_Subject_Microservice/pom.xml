@@ -41,8 +41,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.common.subject</groupId>
-			<artifactId>common-subject</artifactId>
+			<groupId>com.common.entities</groupId>
+			<artifactId>common-entities</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Schedule;
 import com.microservice.administrator.exceptions.ScheduleNotFoundException;
-import com.microservice.administrator.models.Schedule;
+
 import com.microservice.administrator.services.IServiceSchedule;
 
 

@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Administrator;
+import com.common.entities.models.Instructive;
+import com.common.entities.models.Period;
 import com.microservice.administrator.exceptions.PeriodNotFoundException;
-import com.microservice.administrator.models.Administrator;
-import com.microservice.administrator.models.Instructive;
-import com.microservice.administrator.models.Period;
 import com.microservice.administrator.services.IServiceAdministrator;
 import com.microservice.administrator.services.IServiceInstructive;
 import com.microservice.administrator.services.IServicePeriod;
