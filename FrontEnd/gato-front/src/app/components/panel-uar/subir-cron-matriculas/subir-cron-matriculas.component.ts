@@ -82,7 +82,7 @@ export class SubirCronMatriculasComponent implements OnInit {
   }
 
   attachPeriodo(): void {
-    this.periodo.cronograma = this.cronograma;
+    this.periodo.schedule = this.cronograma;
     this.periodoService.create(this.periodo).subscribe();
   }
 

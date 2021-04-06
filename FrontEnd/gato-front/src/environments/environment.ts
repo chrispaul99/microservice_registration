@@ -10,7 +10,7 @@ export const environment = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json'
-    })
+    }),
   },
   url: 'http://localhost:8080/api',
 };

@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Archivo:</label>
                     <div class="col-sm-8">
-                        <input formControlName="archivo" [(ngModel)]="instructivo.file" [ngClass]="{'is-invalid': submitted && f.archivo.errors}" type="file" class="form-control">
+                        <input formControlName="archivo" [(ngModel)]="instructivo.document" [ngClass]="{'is-invalid': submitted && f.archivo.errors}" type="file" class="form-control">
                         <div *ngIf="submitted && f.archivo.errors">
                             <div *ngIf="f.archivo.errors.required" class="text-c-red">El archivo es requerido</div>
                         </div>

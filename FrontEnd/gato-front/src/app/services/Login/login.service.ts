@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginService {
 
-  url = environment.url + '/Login/Authenticate';
+  url = environment.url + '/security/authjwt/signin';
   userToken: string;
   constructor(private http: HttpClient, private router: Router) {
     this.leerToken();
@@ -24,7 +24,7 @@ export class LoginService {
     // const personaBody = JSON.stringify(p);
     return this.http.post<any>(this.url, authData, environment.httpOptions).pipe(
       map( resp => {
-        this.guardarToken( resp.token );
+        this.guardarToken( resp.accessToken );
         console.log(resp);
         return resp;
       })
@@ -78,9 +78,10 @@ export class LoginService {
   }
   roleMatch(allowedRoles): boolean {
     let isMatch = false;
-    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    console.log(payLoad);
-    const userRole = payLoad.rol;
+    // const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    // console.log(payLoad);
+    // const userRole = payLoad.rol;
+    const userRole = 'A';
     console.log(userRole);
     allowedRoles.forEach(element => {
       if (userRole === element) {
@@ -91,9 +92,9 @@ export class LoginService {
     return isMatch;
   }
   verificarRol(): void {
-    let rol = '';
-    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    rol = payLoad.rol;
+    let rol = 'A'; /** Amage */
+    // const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    // rol = payLoad.rol;
     switch (rol){
       case 'U':
         this.router.navigateByUrl('/panelEstudiante');

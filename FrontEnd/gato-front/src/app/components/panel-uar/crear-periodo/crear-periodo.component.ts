@@ -5,6 +5,7 @@ import { Periodo } from '../../../models/Periodo/periodo';
 import { PeriodoService } from '../../../services/Periodo/periodo.service';
 import { Instructivo } from '../../../models/Instructivo/instructivo';
 import { InstructivoService } from '../../../services/Instructivo/instructivo.service';
+import { Administrador } from '../../../models/Administrador/administrador';
 
 @Component({
   selector: 'app-crear-periodo',
@@ -18,6 +19,7 @@ export class CrearPeriodoComponent implements OnInit {
   periodo: Periodo = new Periodo();
   instructivos: Instructivo[] = [];
   instructivoSelected: number;
+  admin: Administrador = new Administrador();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +34,7 @@ export class CrearPeriodoComponent implements OnInit {
       instructivo: ['', [Validators.required]],
     });
     this.listarInstructivos();
+    this.admin.idAdministrator = 1; /*Primero registrar en la BDD */
   }
 
   listarInstructivos(): void{
@@ -55,7 +58,7 @@ export class CrearPeriodoComponent implements OnInit {
 
   attachInstructivo(id: number): void {
     this.instructivoService.retrieve(id).subscribe(rs => {
-      this.periodo.instructivo = rs;
+      this.periodo.instructive = rs;
       this.submitted = true;
       if (this.form.invalid) {
         Swal.fire({
@@ -82,6 +85,7 @@ export class CrearPeriodoComponent implements OnInit {
 
   onSubmit(): void {
     this.periodo.status = false;
+    this.periodo.administrator = this.admin;
     this.attachInstructivo(this.instructivoSelected);
   }
 
