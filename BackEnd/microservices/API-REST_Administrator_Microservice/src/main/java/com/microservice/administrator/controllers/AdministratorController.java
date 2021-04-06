@@ -52,10 +52,7 @@ public class AdministratorController {
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Administrator create(
-			@Valid
-			@RequestBody Administrator Administrator
-		) {
+	public Administrator create(@RequestBody Administrator Administrator) {
 		service.save(Administrator);
 		return Administrator;
 	}

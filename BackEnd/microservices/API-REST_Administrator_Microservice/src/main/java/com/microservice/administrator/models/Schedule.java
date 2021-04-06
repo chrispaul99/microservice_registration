@@ -1,11 +1,14 @@
 package com.microservice.administrator.models;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,6 +51,10 @@ public class Schedule {
 	@NotNull
 	@Column(name="description")
 	private String descripcion;
+
+	@OneToOne(cascade = CascadeType.ALL)		
+	@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
+	private Period period;
 
 	public Schedule() {
 	}
@@ -103,5 +110,14 @@ public class Schedule {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public Period getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Period period) {
+		this.period = period;
+	}
+	
 	
 }

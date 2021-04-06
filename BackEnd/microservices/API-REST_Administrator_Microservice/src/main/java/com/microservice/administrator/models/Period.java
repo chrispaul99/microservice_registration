@@ -13,9 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Table(name = "Periods")
@@ -36,11 +34,20 @@ public class Period {
 	@Temporal(TemporalType.DATE)
 	private Calendar end_date;
 		
-	@NotEmpty(message = "Seleccione el status")
 	@NotNull
 	@Column(name="status")
 	private Boolean status;
+
+	@OneToOne(cascade = CascadeType.ALL)		
+	@JoinColumn(name = "fk_instructive", referencedColumnName = "id_instructive")
+	private Instructive instructive;
+
+	@OneToOne(mappedBy = "period", cascade = CascadeType.ALL)
+    private Schedule schedule;
 	
+	@OneToOne(cascade = CascadeType.ALL)		
+	@JoinColumn(name = "fk_administrator", referencedColumnName = "id_administrator")
+	private Administrator administrator;
 
 	public Period() {
 	}
@@ -80,6 +87,30 @@ public class Period {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public Instructive getInstructive() {
+		return instructive;
+	}
+
+	public void setInstructive(Instructive instructive) {
+		this.instructive = instructive;
+	}
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+
+	public Administrator getAdministrator() {
+		return administrator;
+	}
+
+	public void setAdministrator(Administrator administrator) {
+		this.administrator = administrator;
 	}
 
 	
