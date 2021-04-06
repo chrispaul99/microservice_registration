@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.microservice.administrator.exceptions.PeriodNotFoundException;
+import com.microservice.administrator.models.Administrator;
+import com.microservice.administrator.models.Instructive;
 import com.microservice.administrator.models.Period;
+import com.microservice.administrator.services.IServiceAdministrator;
+import com.microservice.administrator.services.IServiceInstructive;
 import com.microservice.administrator.services.IServicePeriod;
 
 
@@ -30,6 +34,10 @@ public class PeriodController {
 	
 	@Autowired
 	private IServicePeriod service;
+	@Autowired
+	private IServiceInstructive serviceinstructive;
+	@Autowired
+	private IServiceAdministrator serviceadmin;
 	
 	@GetMapping("/{id}")
 	public Period retrieve(@PathVariable(value = "id") Long id){
@@ -47,12 +55,19 @@ public class PeriodController {
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Period create(
-			@Valid
-			@RequestBody Period Period
-		) {
-		service.save(Period);
-		return Period;
+	public ResponseEntity<Object> create(@Valid@RequestBody Period Period) {
+		Instructive ins = serviceinstructive.findById(Period.getInstructive().getIdInstructive());
+		Administrator admin = serviceadmin.findById(Period.getAdministrator().getIdAdministrator());
+		if(ins!=null && admin!=null){
+			ins.setStatus(true);
+			serviceinstructive.save(ins);
+			Period.setAdministrator(admin);
+			Period.setInstructive(ins);
+			service.save(Period);
+		return ResponseEntity.ok(Period);
+		}
+		return ResponseEntity.notFound().build();
+		
 	}
 	
 	

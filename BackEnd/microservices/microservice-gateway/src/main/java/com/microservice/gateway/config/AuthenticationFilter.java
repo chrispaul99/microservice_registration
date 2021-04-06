@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -31,9 +32,9 @@ public class AuthenticationFilter implements GatewayFilter {
 
             final String token = this.getAuthHeader(request);
 
-            if (jwtUtil.isInvalid(token))
+            if (jwtUtil.isInvalid(token)){
                 return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
-
+            }
             this.populateRequestWithHeaders(exchange, token);
         }
         return chain.filter(exchange);
@@ -49,7 +50,12 @@ public class AuthenticationFilter implements GatewayFilter {
     }
 
     private String getAuthHeader(ServerHttpRequest request) {
-        return request.getHeaders().getOrEmpty("Authorization").get(0);
+        String headerAuth = request.getHeaders().getOrEmpty("Authorization").get(0);
+
+		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+			return headerAuth.substring(7, headerAuth.length());
+		}
+		return null;
     }
 
     private boolean isAuthMissing(ServerHttpRequest request) {
@@ -57,10 +63,13 @@ public class AuthenticationFilter implements GatewayFilter {
     }
 
     private void populateRequestWithHeaders(ServerWebExchange exchange, String token) {
+       
         Claims claims = jwtUtil.getAllClaimsFromToken(token);
+        System.out.println(claims);
         exchange.getRequest().mutate()
-                .header("id", String.valueOf(claims.get("id")))
-                .header("role", String.valueOf(claims.get("role")))
+                .header("username", String.valueOf(claims.get("username")))
+                .header("email", String.valueOf(claims.get("email")))
                 .build();
     }
+
 }

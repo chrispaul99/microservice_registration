@@ -1,9 +1,11 @@
 package com.microservice.administrator.models;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -23,6 +25,10 @@ public class Instructive {
 	@NotNull
 	@Column(name="status")
 	private Boolean status;
+
+	@OneToOne(mappedBy = "instructive", cascade = CascadeType.ALL)
+    private Period period;
+	
 	
 
 	public Instructive(Long idInstructive) {
@@ -56,6 +62,14 @@ public class Instructive {
 
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public Period getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(Period period) {
+		this.period = period;
 	}
 
 }

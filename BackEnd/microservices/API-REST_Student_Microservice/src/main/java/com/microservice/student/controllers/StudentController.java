@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.microservice.student.exceptions.StudentNotFoundException;
 import com.microservice.student.models.Student;
@@ -39,6 +40,7 @@ public class StudentController {
 		return student;
 	}
 	@GetMapping("/message")
+	@PreAuthorize("hasRole('ADMIN')")
 	public String test() {
 		
 		return "Hello from microservice student";

@@ -3,12 +3,14 @@ package com.microservice.gateway.config;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.security.Key;
 import java.util.Date;
+
+import javax.annotation.PostConstruct;
 
 @Component
 public class JwtUtil {
@@ -16,15 +18,15 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    private Key key;
+	private Key keys;
 
     @PostConstruct
     public void init(){
-        this.key = Keys.hmacShaKeyFor(secret.getBytes());
+        this.keys = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
     public Claims getAllClaimsFromToken(String token) {
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder().setSigningKey(keys).build().parseClaimsJws(token).getBody();
     }
 
     private boolean isTokenExpired(String token) {
