@@ -1,4 +1,4 @@
-package com.microservice.subject.models;
+package com.common.subject.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

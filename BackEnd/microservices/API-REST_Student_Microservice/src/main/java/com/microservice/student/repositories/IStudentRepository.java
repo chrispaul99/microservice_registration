@@ -2,9 +2,10 @@ package com.microservice.student.repositories;
 
 import java.util.List;
 
+import com.common.student.models.entity.Student;
+
 import org.springframework.data.repository.CrudRepository;
 
-import com.microservice.student.models.Student;
 
 
 

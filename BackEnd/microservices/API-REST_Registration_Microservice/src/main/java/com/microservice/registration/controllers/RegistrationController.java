@@ -20,35 +20,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.microservice.registration.exceptions.StudentNotFoundException;
-import com.microservice.registration.models.Student;
-import com.microservice.registration.services.IServiceStudent;
+import com.microservice.registration.exceptions.RegistrationNotFoundException;
+import com.microservice.registration.models.Registration;
+import com.microservice.registration.services.IServiceRegistration;
 
 
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/student")
-public class StudentController {
+@RequestMapping("/Registration")
+public class RegistrationController {
 	
 	@Autowired
-	private IServiceStudent service;
+	private IServiceRegistration service;
 	
 	@GetMapping("/{id}")
-	public Student retrieve(@PathVariable(value = "id") Long id){
-		Student student = service.findById(id);
-		if (student == null)
-			throw new StudentNotFoundException(id);
-		return student;
+	public Registration retrieve(@PathVariable(value = "id") Long id){
+		Registration Registration = service.findById(id);
+		if (Registration == null)
+			throw new RegistrationNotFoundException(id);
+		return Registration;
 	}
 	
 	@GetMapping
-	public List<Student> list(){
+	public List<Registration> list(){
 		return service.findAll();
 	}
 	
 	@GetMapping("/listByLastName")
-	public List<Student> listByLastname(@PathParam(value = "lastName") String lastName){
+	public List<Registration> listByLastname(@PathParam(value = "lastName") String lastName){
 		return service.findByLastName(lastName);
 	}
 	
@@ -56,25 +56,25 @@ public class StudentController {
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Student create(
+	public Registration create(
 			@Valid
-			@RequestBody Student student
+			@RequestBody Registration Registration
 		) {
-		service.save(student);
-		return student;
+		service.save(Registration);
+		return Registration;
 	}
 	
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Student student, @PathVariable Long id) {
-        Student studentOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody Registration Registration, @PathVariable Long id) {
+        Registration RegistrationOptional = service.findById(id);
 
-        if (studentOptional==null)
+        if (RegistrationOptional==null)
             return ResponseEntity.notFound().build();
-        student.setIdStudent(id);
-        service.save(student);
-        return ResponseEntity.ok(student);
+        Registration.setIdRegistration(id);
+        service.save(Registration);
+        return ResponseEntity.ok(Registration);
     }
 	
 	
@@ -83,7 +83,7 @@ public class StudentController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Object> delete(@PathVariable Long id) {
         service.delete(id);
-        return ResponseEntity.ok("Student Deleted");
+        return ResponseEntity.ok("Registration Deleted");
     }
 
 }

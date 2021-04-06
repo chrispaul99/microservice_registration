@@ -2,10 +2,10 @@ package com.microservice.registration.exceptions;
 
 import java.util.Set;
 
-public class StudentUnSupportedFieldPatchException extends RuntimeException {
+public class RegistrationUnSupportedFieldPatchException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
-	public StudentUnSupportedFieldPatchException(Set<String> keys)
+	public RegistrationUnSupportedFieldPatchException(Set<String> keys)
 	{
 		super("Campo " + keys.toString() + " no es permitida la modificación.");
 	}

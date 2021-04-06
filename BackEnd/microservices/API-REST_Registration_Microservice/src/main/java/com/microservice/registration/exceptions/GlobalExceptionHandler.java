@@ -21,13 +21,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
-	@ExceptionHandler(StudentNotFoundException.class)
+	@ExceptionHandler(RegistrationNotFoundException.class)
 	public void springHandleNotFound(HttpServletResponse response) throws IOException
 	{
 		response.sendError(HttpStatus.NOT_FOUND.value());
 	}
 
-	@ExceptionHandler(StudentUnSupportedFieldPatchException.class)
+	@ExceptionHandler(RegistrationUnSupportedFieldPatchException.class)
 	public void springUnSupportedFieldPatch(HttpServletResponse response) throws IOException
 	{
 		response.sendError(HttpStatus.METHOD_NOT_ALLOWED.value());
