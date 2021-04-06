@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.common.entities.models.Subject;
 import com.microservice.subject.exceptions.SubjectNotFoundException;
+import com.microservice.subject.models.SubjectData;
 import com.microservice.subject.services.IServiceSubject;
 
 
@@ -44,15 +45,15 @@ public class SubjectController {
 	}
 	
 	@GetMapping
-	public List<Subject> list(){
+	public List<SubjectData> list(){
 		return service.findAll();
 	}
 	
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Subject create(
+	public SubjectData create(
 			@Valid
-			@RequestBody Subject Subject
+			@RequestBody SubjectData Subject
 		) {
 		service.save(Subject);
 		return Subject;
@@ -61,8 +62,8 @@ public class SubjectController {
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Subject Subject, @PathVariable Long id) {
-        Subject SubjectOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody SubjectData Subject, @PathVariable Long id) {
+        SubjectData SubjectOptional = service.findById(id);
 
         if (SubjectOptional==null)
             return ResponseEntity.notFound().build();

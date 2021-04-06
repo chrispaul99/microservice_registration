@@ -2,17 +2,15 @@ package com.microservice.registration.repositories;
 
 import java.util.List;
 
-import com.common.entities.models.Registration;
+import com.microservice.registration.models.RegistrationData;
 
 import org.springframework.data.repository.CrudRepository;
 
 
 
 
-public interface IRegistrationRepository extends CrudRepository<Registration, Long> {
+public interface IRegistrationRepository extends CrudRepository<RegistrationData, Long> {
 	
-	public List<Registration> findByFirstName(String firstName);
-	public List<Registration> findByLastName(String lastName);
-	public Iterable<Registration> findAllById(Iterable<Long> ids);
+	public Iterable<RegistrationData> findAllById(Iterable<Long> ids);
 
 }

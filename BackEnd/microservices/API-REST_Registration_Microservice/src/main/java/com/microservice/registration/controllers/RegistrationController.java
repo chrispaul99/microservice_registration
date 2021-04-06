@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.common.entities.models.Registration;
 import com.microservice.registration.exceptions.RegistrationNotFoundException;
+import com.microservice.registration.models.RegistrationData;
 import com.microservice.registration.services.IServiceRegistration;
 
 
@@ -36,15 +37,15 @@ public class RegistrationController {
 	private IServiceRegistration service;
 	
 	@GetMapping("/{id}")
-	public Registration retrieve(@PathVariable(value = "id") Long id){
-		Registration Registration = service.findById(id);
+	public RegistrationData retrieve(@PathVariable(value = "id") Long id){
+		RegistrationData Registration = service.findById(id);
 		if (Registration == null)
 			throw new RegistrationNotFoundException(id);
 		return Registration;
 	}
 	
 	@GetMapping
-	public List<Registration> list(){
+	public List<RegistrationData> list(){
 		return service.findAll();
 	}
 	@GetMapping("/registrations-by-student")
@@ -53,9 +54,9 @@ public class RegistrationController {
 	}
 	@PostMapping("/save")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Registration create(
+	public RegistrationData create(
 			@Valid
-			@RequestBody Registration Registration
+			@RequestBody RegistrationData Registration
 		) {
 		service.save(Registration);
 		return Registration;
@@ -64,8 +65,8 @@ public class RegistrationController {
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<Object> update(@RequestBody Registration Registration, @PathVariable Long id) {
-        Registration RegistrationOptional = service.findById(id);
+	public ResponseEntity<Object> update(@RequestBody RegistrationData Registration, @PathVariable Long id) {
+        RegistrationData RegistrationOptional = service.findById(id);
 
         if (RegistrationOptional==null)
             return ResponseEntity.notFound().build();

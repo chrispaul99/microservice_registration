@@ -11,11 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,16 +23,14 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
-@Table(name = "Registrations")
-@Entity
-public class Registration{
+@MappedSuperclass
+public abstract class Registration{
 	
 	@Id
 	@Column(name="id_registration")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idRegistration;
-
+	
 	@Column(name="date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
@@ -61,23 +59,7 @@ public class Registration{
 	//@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
 	//private Period period;
 	
-	 
-
-	public Registration() {
-	}
-
-	public Registration(Long idRegistration) {
-		this.idRegistration = idRegistration;
-	}
-
-	public Long getIdRegistration() {
-		return idRegistration;
-	}
-
-	public void setIdRegistration(Long idRegistration) {
-		this.idRegistration = idRegistration;
-	}
-
+	
 	public Calendar getDate() {
 		return date;
 	}
@@ -109,6 +91,16 @@ public class Registration{
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
+
+	public Long getIdRegistration() {
+		return idRegistration;
+	}
+
+	public void setIdRegistration(Long idRegistration) {
+		this.idRegistration = idRegistration;
+	}
+
+
 
 	//public Subject getSubject() {
 	//	return subject;

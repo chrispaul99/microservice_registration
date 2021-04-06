@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.common.entities.models.Registration;
 import com.microservice.registration.clients.IStudentFeignClient;
+import com.microservice.registration.models.RegistrationData;
 import com.microservice.registration.repositories.IRegistrationRepository;
 
 
@@ -21,7 +21,7 @@ public class RegistrationService implements IServiceRegistration{
 	
 	@Override
 	@Transactional
-	public void save(Registration myRegistration) {
+	public void save(RegistrationData myRegistration) {
 		try {
 			RegistrationService.save(myRegistration);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class RegistrationService implements IServiceRegistration{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Registration findById(Long id) {
+	public RegistrationData findById(Long id) {
 		return RegistrationService.findById(id).get();
 	}
 
@@ -48,12 +48,12 @@ public class RegistrationService implements IServiceRegistration{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Registration> findAll() {
-		return (List<Registration>) RegistrationService.findAll();
+	public List<RegistrationData> findAll() {
+		return (List<RegistrationData>) RegistrationService.findAll();
 	}
 
 	@Override
-	public Iterable<Registration> findAllById(Iterable<Long> ids) {
+	public Iterable<RegistrationData> findAllById(Iterable<Long> ids) {
 		return RegistrationService.findAllById(ids);
 	}
 

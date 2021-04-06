@@ -2,13 +2,13 @@ package com.security.server.repository;
 
 import java.util.Optional;
 
-import com.common.entities.models.User;
+import com.security.server.models.UserData;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-	Optional<User> findByUsername(String username);
+public interface UserRepository extends JpaRepository<UserData, Long> {
+	Optional<UserData> findByUsername(String username);
 
 	Boolean existsByUsername(String username);
 
