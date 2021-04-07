@@ -101,12 +101,11 @@ public class PeriodController {
 		if(pdDb == null) {
 			return ResponseEntity.notFound().build();
 		}
-		Subject sub = this.service.createSubject(subject);
 		PeriodSubject subject_std = new PeriodSubject();
-		subject_std.setIdSubject(sub.getIdSubject());
+		subject_std.setIdSubject(subject.getIdSubject());
 		subject_std.setPeriod(pdDb);
 		pdDb.addSubject(subject_std);
 		this.service.save(pdDb);
-		return ResponseEntity.status(HttpStatus.CREATED).body(sub);
+		return ResponseEntity.status(HttpStatus.CREATED).body(subject);
 	}
 }

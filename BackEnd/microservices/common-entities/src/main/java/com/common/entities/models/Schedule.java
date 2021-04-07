@@ -19,15 +19,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
 public abstract class Schedule {
-    @NotEmpty(message = "Ingrese los creditos minimos")
 	@NotNull
 	@Column(name="credit_min")
-	private int credit_min;
-
-    @NotEmpty(message = "Ingrese los creditos maximos")
+	private Integer credit_min;
 	@NotNull
 	@Column(name="credit_max")
-	private int credit_max;
+	private Integer credit_max;
 
     @NotEmpty(message = "Ingrese el tipo de estudiante")
 	@NotNull

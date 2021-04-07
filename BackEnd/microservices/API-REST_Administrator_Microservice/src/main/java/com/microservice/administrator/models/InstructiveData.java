@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 import com.common.entities.models.Instructive;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Table(name = "Instrutives")
 @Entity
