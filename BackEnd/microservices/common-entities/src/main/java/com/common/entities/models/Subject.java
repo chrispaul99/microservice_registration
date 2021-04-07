@@ -38,11 +38,7 @@ public abstract class Subject {
     @NotNull
 	@Column(name="status")
 	private Boolean status;
-
-    //@ManyToOne		
-	//@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
-	//private Period period;
-//
+    
     //@OneToOne(mappedBy = "subject", cascade = CascadeType.ALL)
     //private Registration registration;
 

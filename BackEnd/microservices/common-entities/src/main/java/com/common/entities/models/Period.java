@@ -1,10 +1,13 @@
 package com.common.entities.models;
 
 import java.util.Calendar;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,10 +28,8 @@ public abstract class Period {
 	@Column(name="status")
 	private Boolean status;
 
-	
-	//@OneToMany(mappedBy="period",fetch=FetchType.LAZY)
-	//	private List<Subject> subjects; 
-//
+	@Transient
+	private List<Subject> subjects;
 	//@OneToOne(mappedBy = "period", cascade = CascadeType.ALL)
 	//private Registration registration;
 
@@ -57,13 +58,13 @@ public abstract class Period {
 		this.status = status;
 	}
 
-	//public List<Subject> getSubjects() {
-	//	return subjects;
-	//}
-//
-	//public void setSubjects(List<Subject> subjects) {
-	//	this.subjects = subjects;
-	//}
+	public List<Subject> getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(List<Subject> subjects) {
+		this.subjects = subjects;
+	}
 //
 	
 

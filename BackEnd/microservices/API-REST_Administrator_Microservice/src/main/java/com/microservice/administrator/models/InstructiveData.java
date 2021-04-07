@@ -19,7 +19,7 @@ public class InstructiveData extends Instructive {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idInstructive;
 
-	@OneToOne(mappedBy = "instructive", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "instructive", cascade = CascadeType.REMOVE)
     private PeriodData period;
 
 	public InstructiveData() {
