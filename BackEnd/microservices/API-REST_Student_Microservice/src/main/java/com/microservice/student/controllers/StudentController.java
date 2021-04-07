@@ -81,7 +81,7 @@ public class StudentController {
 	{
 		List<StudentData> cursos = service.findAll().stream().map(c -> {
 			c.getRegistrations_student().forEach(ca -> {
-				Registration registration = new Registration();
+				Registration registration = new Registration(){};
 				registration.setIdRegistration(ca.getIdRegistration());
 				c.addRegistration(registration);
 			});

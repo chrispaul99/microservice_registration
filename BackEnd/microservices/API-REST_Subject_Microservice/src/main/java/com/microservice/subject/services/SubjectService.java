@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.common.entities.models.Subject;
+import com.microservice.subject.models.SubjectData;
 import com.microservice.subject.repositories.ISubjectRepository;
 
 
@@ -18,7 +18,7 @@ public class SubjectService implements IServiceSubject{
 	
 	@Override
 	@Transactional
-	public void save(Subject mySubject) {
+	public void save(SubjectData mySubject) {
 		try {
 			SubjectService.save(mySubject);
 		} catch (Exception e) {
@@ -29,7 +29,7 @@ public class SubjectService implements IServiceSubject{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Subject findById(Long id) {
+	public SubjectData findById(Long id) {
 		return SubjectService.findById(id).get();
 	}
 
@@ -45,8 +45,8 @@ public class SubjectService implements IServiceSubject{
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Subject> findAll() {
-		return (List<Subject>) SubjectService.findAll();
+	public List<SubjectData> findAll() {
+		return (List<SubjectData>) SubjectService.findAll();
 	}
 
 }

@@ -17,20 +17,9 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-<<<<<<< HEAD:BackEnd/microservices/API-REST_Administrator_Microservice/src/main/java/com/microservice/administrator/models/Schedule.java
-@Table(name = "Schedules")
-@Entity
-public class Schedule {
-    @Id
-	@Column(name="id_shedule")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idSchedule;
-
-=======
 @MappedSuperclass
 public abstract class Schedule {
     @NotEmpty(message = "Ingrese los creditos minimos")
->>>>>>> origin/dev:BackEnd/microservices/common-entities/src/main/java/com/common/entities/models/Schedule.java
 	@NotNull
 	@Column(name="credit_min")
 	private Integer credit_min;

@@ -1,5 +1,7 @@
 package com.microservice.administrator.models;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,7 +26,7 @@ public class PeriodData extends Period {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idPeriod;
 
-	@OneToOne(cascade = CascadeType.ALL)		
+	@OneToOne(cascade = CascadeType.REMOVE)		
 	@JoinColumn(name = "fk_instructive", referencedColumnName = "id_instructive")
 	private InstructiveData instructive;
 	
@@ -34,6 +37,10 @@ public class PeriodData extends Period {
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "period", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnoreProperties(value = {"period"}, allowSetters = true)
     private ScheduleData schedule;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "period", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties(value = {"period"}, allowSetters = true)
+	private List<PeriodSubject> periods_subject;
 
 	public PeriodData() {
 	}

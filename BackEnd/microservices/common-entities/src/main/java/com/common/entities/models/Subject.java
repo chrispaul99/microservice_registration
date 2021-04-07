@@ -1,26 +1,13 @@
 package com.common.entities.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Table(name = "Subjects")
-@Entity
-public class Subject {
-    @Id
-	@Column(name="id_subject")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idSubject;
+@MappedSuperclass
+public abstract class Subject {
 
 	@NotEmpty(message = "Ingrese el nombre de la materia")
 	@NotNull
@@ -51,28 +38,9 @@ public class Subject {
     @NotNull
 	@Column(name="status")
 	private Boolean status;
-
-    //@ManyToOne		
-	//@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
-	//private Period period;
-//
+    
     //@OneToOne(mappedBy = "subject", cascade = CascadeType.ALL)
     //private Registration registration;
-
-    public Subject() {
-    }
-
-    public Subject(Long idSubject) {
-        this.idSubject = idSubject;
-    }
-
-    public Long getIdSubject() {
-        return idSubject;
-    }
-
-    public void setIdSubject(Long idSubject) {
-        this.idSubject = idSubject;
-    }
 
     public String getName() {
         return name;

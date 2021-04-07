@@ -2,16 +2,14 @@ package com.microservice.registration.services;
 
 import java.util.List;
 
-import com.common.entities.models.Registration;
-
-
+import com.microservice.registration.models.RegistrationData;
 
 public interface IServiceRegistration {
 
-	public void save(Registration Registration); //Create-Update
-	public Registration findById(Long id); //Retrieve
+	public void save(RegistrationData Registration); //Create-Update
+	public RegistrationData findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
-	public List<Registration> findAll(); //List
-	public Iterable<Registration> findAllById(Iterable<Long> ids);
+	public List<RegistrationData> findAll(); //List
+	public Iterable<RegistrationData> findAllById(Iterable<Long> ids);
 	public void eliminarAlumnoMatriculaPorId(Long id) ;
 }
