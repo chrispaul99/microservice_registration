@@ -19,8 +19,6 @@ public class PeriodService implements IServicePeriod{
 	@Autowired
 	private IPeriodRepository PeriodService;
 
-	@Autowired
-	private ISubjectFeignClient subjectService;
 	
 	@Override
 	@Transactional
@@ -53,11 +51,6 @@ public class PeriodService implements IServicePeriod{
 	@Transactional(readOnly = true)
 	public List<PeriodData> findAll() {
 		return (List<PeriodData>) PeriodService.findAll();
-	}
-
-	@Override
-	public Subject createSubject(Subject Subject) {
-		return subjectService.createSubject(Subject);
 	}
 
 }

@@ -48,14 +48,11 @@ public class SubjectController {
 		return service.findAll();
 	}
 	
-	@PostMapping("/save")
+	@PostMapping("/save/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public SubjectData create(
-			@Valid
-			@RequestBody SubjectData Subject
-		) {
+	public void create(@Valid @RequestBody SubjectData Subject,@PathVariable Long id) {
 		service.save(Subject);
-		return Subject;
+		service.asignarMateria(id, Subject);
 	}
 	
 	

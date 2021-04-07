@@ -14,5 +14,4 @@ public interface IServicePeriod {
 	public PeriodData findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
 	public List<PeriodData> findAll(); //List
-	public Subject createSubject(Subject Subject);
 }

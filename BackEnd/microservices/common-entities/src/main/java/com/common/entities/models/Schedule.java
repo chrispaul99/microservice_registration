@@ -22,7 +22,6 @@ public abstract class Schedule {
 	@NotNull
 	@Column(name="credit_min")
 	private Integer credit_min;
-
 	@NotNull
 	@Column(name="credit_max")
 	private Integer credit_max;

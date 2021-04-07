@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.common.entities.models.Subject;
+import com.microservice.subject.clients.IPeriodFeignClient;
 import com.microservice.subject.models.SubjectData;
 import com.microservice.subject.repositories.ISubjectRepository;
 
@@ -15,6 +17,9 @@ public class SubjectService implements IServiceSubject{
 	
 	@Autowired
 	private ISubjectRepository SubjectService;
+
+	@Autowired
+	private IPeriodFeignClient PeriodService;
 	
 	@Override
 	@Transactional
@@ -24,7 +29,6 @@ public class SubjectService implements IServiceSubject{
 		} catch (Exception e) {
 			throw e;
 		}
-		
 	}
 
 	@Override
@@ -47,6 +51,11 @@ public class SubjectService implements IServiceSubject{
 	@Transactional(readOnly = true)
 	public List<SubjectData> findAll() {
 		return (List<SubjectData>) SubjectService.findAll();
+	}
+
+	@Override
+	public void asignarMateria(Long id, Subject subject) {
+		PeriodService.asignarMateria(id, subject);
 	}
 
 }
