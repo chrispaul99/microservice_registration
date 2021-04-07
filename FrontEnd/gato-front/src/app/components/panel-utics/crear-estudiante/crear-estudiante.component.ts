@@ -4,7 +4,6 @@ import Swal from 'sweetalert2';
 import { Estudiante } from '../../../models/Estudiante/estudiante';
 import { Usuario } from '../../../models/Usuario/Usuario';
 import { EstudianteService } from '../../../services/Estudiante/estudiante.service';
-import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crear-estudiante',

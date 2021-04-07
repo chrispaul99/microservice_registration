@@ -62,6 +62,15 @@
         },
         {
             "type": "java",
+            "name": "Spring Boot-MavenWrapperDownloader",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "MavenWrapperDownloader",
+            "args": ""
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-ApiRestRegistrationMicroserviceApplication<API-REST_Registration_Microservice>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

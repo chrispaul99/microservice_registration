@@ -10,7 +10,8 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginService {
 
-  url = environment.url + '/Login/Authenticate';
+  url = environment.url + '/security/authjwt/signin';
+  // url = 'http://localhost:8084/authjwt/signin';
   userToken: string;
   constructor(private http: HttpClient, private router: Router) {
     this.leerToken();
@@ -21,10 +22,10 @@ export class LoginService {
       ...usuario,
       returnSecureToken: true
     };
-    // const personaBody = JSON.stringify(p);
+    console.log(authData);
     return this.http.post<any>(this.url, authData, environment.httpOptions).pipe(
       map( resp => {
-        this.guardarToken( resp.token );
+        this.guardarToken( resp.accessToken );
         console.log(resp);
         return resp;
       })
@@ -45,6 +46,7 @@ export class LoginService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('expira');
+    this.router.navigateByUrl('/Login');
   }
   private guardarToken( idToken: string ): void {
 
@@ -78,9 +80,10 @@ export class LoginService {
   }
   roleMatch(allowedRoles): boolean {
     let isMatch = false;
-    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    console.log(payLoad);
-    const userRole = payLoad.rol;
+    // const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    // console.log(payLoad);
+    // const userRole = payLoad.rol;
+    const userRole = 'A';
     console.log(userRole);
     allowedRoles.forEach(element => {
       if (userRole === element) {
@@ -91,15 +94,15 @@ export class LoginService {
     return isMatch;
   }
   verificarRol(): void {
-    let rol = '';
-    const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
-    rol = payLoad.rol;
+    let rol = 'A'; /** Amage */
+    // const payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    // rol = payLoad.rol;
     switch (rol){
       case 'U':
         this.router.navigateByUrl('/panelEstudiante');
         break;
       case 'A':
-        this.router.navigateByUrl('/panelAdministrador');
+        this.router.navigateByUrl('/panelUar');
         break;
     }
   }

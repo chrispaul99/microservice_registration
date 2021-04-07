@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Fecha de inicio:</label>
                     <div class="col-sm-8">
-                        <input formControlName="fechaInicio" [(ngModel)]="periodo.fechaInicio" [ngClass]="{'is-invalid': submitted && f.fechaInicio.errors}" type="date" class="form-control" placeholder="Fecha de inicio">
+                        <input formControlName="fechaInicio" [(ngModel)]="periodo.start_date" [ngClass]="{'is-invalid': submitted && f.fechaInicio.errors}" type="date" class="form-control" placeholder="Fecha de inicio">
                         <div *ngIf="submitted && f.fechaInicio.errors">
                             <div *ngIf="f.fechaInicio.errors.required" class="text-c-red">La fecha de inicio es requerido</div>
                         </div>
@@ -17,18 +17,20 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Fecha de finalización:</label>
                     <div class="col-sm-8">
-                        <input formControlName="fechaFin" [(ngModel)]="periodo.fechaFin" [ngClass]="{'is-invalid': submitted && f.fechaFin.errors}" type="date" class="form-control" placeholder="Fecha de finalización">
+                        <input formControlName="fechaFin" [(ngModel)]="periodo.end_date" [ngClass]="{'is-invalid': submitted && f.fechaFin.errors}" type="date" class="form-control" placeholder="Fecha de finalización">
                         <div *ngIf="submitted && f.fechaFin.errors">
                             <div *ngIf="f.nombres.fechaFin.required" class="text-c-red">La fecha de finalización es requerida</div>
                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Descripción:</label>
+                    <label class="col-sm-4 col-form-label">Instructivo:</label>
                     <div class="col-sm-8">
-                        <textarea formControlName="descripcion" [(ngModel)]="periodo.descripcion" [ngClass]="{'is-invalid': submitted && f.descripcion.errors}" rows="5" cols="5" class="form-control" placeholder="Descripción"></textarea>
-                        <div *ngIf="submitted && f.descripcion.errors">
-                            <div *ngIf="f.descripcion.errors.required" class="text-c-red">La descripción es requerida</div>
+                        <select [(ngModel)]="instructivoSelected" formControlName="instructivo" [ngClass]="{'is-invalid': submitted && f.instructivo.errors}" name="select" class="form-control">
+                            <option *ngFor="let item of instructivos" value="{{ item.idInstructive }}">{{ item.document }}</option>
+                        </select>
+                        <div *ngIf="submitted && f.instructivo.errors">
+                            <div *ngIf="f.instructivo.errors.required" class="text-c-red">El instructivo es requerido</div>
                         </div>
                     </div>
                 </div>

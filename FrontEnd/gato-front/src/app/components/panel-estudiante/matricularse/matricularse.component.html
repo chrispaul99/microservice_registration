@@ -1,26 +1,15 @@
 <div class="col-xl-8">
     <div class="card">
         <div class="card-header">
-            <h5 class="d-flex justify-content-center">Registrar Matrícula</h5>
+            <h5 class="d-flex justify-content-center">Matrícula en linea</h5>
         </div>
         <div class="card-block">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Estudiante:</label>
-                    <div class="col-sm-8">
-                        <select [(ngModel)]="matricula.estudiante" formControlName="estudiante" [ngClass]="{'is-invalid': submitted && f.estudiante.errors}" name="select" class="form-control">
-                            <option *ngFor="let item of estudiantes" value="{{ item.id }}">{{ item.idPersona }}</option>
-                        </select>
-                        <div *ngIf="submitted && f.estudiante.errors">
-                            <div *ngIf="f.estudiante.errors.required" class="text-c-red">El estudiante es requerido</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Periodo:</label>
                     <div class="col-sm-8">
-                        <select [(ngModel)]="matricula.periodo" formControlName="periodo" [ngClass]="{'is-invalid': submitted && f.periodo.errors}" name="select" class="form-control">
-                            <option *ngFor="let item of periodos" value="{{ item.id }}">{{ item.descripcion }}</option>
+                        <select [(ngModel)]="periodo" formControlName="periodo" [ngClass]="{'is-invalid': submitted && f.periodo.errors}" name="select" class="form-control">
+                            <option *ngFor="let item of periodos" value="{{ item.idPeriod }}">{{ item.start_date }} - {{ item.end_date }}</option>
                         </select>
                         <div *ngIf="submitted && f.periodo.errors">
                             <div *ngIf="f.periodo.errors.required" class="text-c-red">El periodo es requerido</div>
@@ -45,10 +34,10 @@
                             <tbody>
                                 <tr *ngFor="let item of materias">
                                     <td>
-                                        NRC {{item.nrc}} - {{item.nombre}}
+                                        NRC {{item.nrc}} - {{item.name}}
                                     </td>
                                     <td>
-                                        {{item.creditos}}
+                                        {{item.total_credits}}
                                     </td>
                                     <td class="btn-group">
                                         <button (click)="selectMateria(item)" class="btn btn-sm btn-info"><fa-icon [icon]="faCheck"></fa-icon></button>
@@ -57,31 +46,8 @@
 
                             </tbody>
                         </table>
-                        <div *ngIf="submitted && f.nombre.errors">
-                            <div *ngIf="f.nombre.errors.required" class="text-c-red">El nombre de la empresa es requerido</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Fecha:</label>
-                    <div class="col-sm-8">
-                        <input formControlName="fecha" [(ngModel)]="matricula.fecha" [ngClass]="{'is-invalid': submitted && f.fecha.errors}" type="date" class="form-control" placeholder="Fecha">
-                        <div *ngIf="submitted && f.fecha.errors">
-                            <div *ngIf="f.fecha.errors.required" class="text-c-red">La fecha es requerida</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Tipo:</label>
-                    <div class="col-sm-8">
-                        <select formControlName="tipo" class="control-user" [(ngModel)]="matricula.tipo">
-                            <option>-- Seleccione --</option>
-                            <option value="P">Primera</option>
-                            <option value="S">Segunda</option>
-                            <option value="T">Tercera</option>
-                        </select>
-                        <div *ngIf="submitted && f.tipo.errors">
-                            <div *ngIf="f.tipo.errors.required" class="text-c-red">El tipo es requerido</div>
+                        <div *ngIf="submitted && f.materia.errors">
+                            <div *ngIf="f.materia.errors.required" class="text-c-red">Las materias son requeridas</div>
                         </div>
                     </div>
                 </div>

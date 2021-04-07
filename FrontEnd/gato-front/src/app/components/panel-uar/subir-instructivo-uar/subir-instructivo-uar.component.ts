@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Instructivo } from '../../../models/Instructivo/instructivo';
 import { InstructivoService } from '../../../services/Instructivo/instructivo.service';
+import { Administrador } from '../../../models/Administrador/administrador';
 
 @Component({
   selector: 'app-subir-instructivo-uar',
@@ -14,6 +15,7 @@ export class SubirInstructivoUarComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   instructivo: Instructivo = new Instructivo();
+  admin: Administrador = new Administrador();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,8 +25,8 @@ export class SubirInstructivoUarComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       archivo: ['', [Validators.required]],
-      status: ['', [Validators.required]],
     });
+    this.admin.idAdministrator = 1; /*Primero registrar en la BDD */
   }
 
   get f(){
@@ -32,7 +34,8 @@ export class SubirInstructivoUarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.instructivo.status = false;
+    this.instructivo.administrator = this.admin;
+    this.instructivo.status = true;
     this.submitted = true;
     if (this.form.invalid) {
       Swal.fire({

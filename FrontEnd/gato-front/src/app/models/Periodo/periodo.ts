@@ -1,11 +1,14 @@
 import { Instructivo } from '../Instructivo/instructivo';
 import { Cronograma } from '../Cronograma/cronograma';
+import { Administrador } from '../Administrador/administrador';
+import { Materia } from '../Materia/materia';
 export class Periodo {
-    id: number;
-    fechaInicio: Date;
-    fechaFin: Date;
-    descripcion: string;
+    idPeriod: number;
+    start_date: Date;
+    end_date: Date;
     status: boolean;
-    cronograma: Cronograma = new Cronograma();
-    instructivo: Instructivo = new Instructivo();
+    subjects: Materia[];
+    schedule: Cronograma;
+    instructive: Instructivo = new Instructivo();
+    administrator: Administrador = new Administrador();
 }

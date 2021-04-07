@@ -34,7 +34,6 @@ import com.security.server.repository.UserRepository;
 import com.security.server.security.jwt.JwtUtils;
 import com.security.server.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/authjwt")
 public class AuthController {

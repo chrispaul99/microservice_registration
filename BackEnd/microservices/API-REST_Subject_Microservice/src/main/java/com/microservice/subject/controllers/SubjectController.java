@@ -23,7 +23,6 @@ import com.microservice.subject.exceptions.SubjectNotFoundException;
 import com.microservice.subject.models.SubjectData;
 import com.microservice.subject.services.IServiceSubject;
 
-
 @RestController
 @RequestMapping("/")
 public class SubjectController {
