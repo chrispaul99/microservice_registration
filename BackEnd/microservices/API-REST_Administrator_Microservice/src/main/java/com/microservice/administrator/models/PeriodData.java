@@ -1,5 +1,6 @@
 package com.microservice.administrator.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -43,6 +44,7 @@ public class PeriodData extends Period {
 	private List<PeriodSubject> periods_subject;
 
 	public PeriodData() {
+		this.periods_subject=new ArrayList<PeriodSubject>();
 	}
 
 	public PeriodData(Long idPeriod) {
@@ -80,7 +82,21 @@ public class PeriodData extends Period {
 	public void setSchedule(ScheduleData schedule) {
 		this.schedule = schedule;
 	}
+
+	public List<PeriodSubject> getPeriods_subject() {
+		return periods_subject;
+	}
+
+	public void setPeriods_subject(List<PeriodSubject> periods_subject) {
+		this.periods_subject = periods_subject;
+	}
 	
-    
+	public void addSubject(PeriodSubject regis) {
+		this.periods_subject.add(regis);
+	}
+	
+	public void removeSubject(PeriodSubject regis) {
+		this.periods_subject.remove(regis);
+	}
 	
 }

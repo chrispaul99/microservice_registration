@@ -13,24 +13,7 @@ import com.common.entities.models.Subject;
 @Entity
 public class SubjectData extends Subject {
 
-    @Id
-	@Column(name="id_subject")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idSubject;
-
 	public SubjectData() {
-	}
-
-	public SubjectData(Long idSubject) {
-		this.idSubject = idSubject;
-	}
-
-	public Long getIdSubject() {
-		return idSubject;
-	}
-
-	public void setIdSubject(Long idSubject) {
-		this.idSubject = idSubject;
 	}
 
 	

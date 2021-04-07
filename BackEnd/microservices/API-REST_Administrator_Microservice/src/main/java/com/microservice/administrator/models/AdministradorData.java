@@ -22,6 +22,7 @@ public class AdministradorData extends Administrator{
 	private Long idAdministrator;
 
 	@OneToOne(mappedBy = "administrator", cascade = CascadeType.ALL)
+	@JsonIgnore()
     private PeriodData period;
 
 	public AdministradorData() {

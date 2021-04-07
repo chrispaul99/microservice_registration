@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.common.entities.models.Instructive;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +24,7 @@ public class InstructiveData extends Instructive {
 	private Long idInstructive;
 
 	@OneToOne(mappedBy = "instructive", cascade = CascadeType.REMOVE)
+	@JsonIgnore()
     private PeriodData period;
 
 	public InstructiveData() {

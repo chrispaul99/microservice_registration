@@ -2,7 +2,7 @@ package com.microservice.administrator.services;
 
 import java.util.List;
 
-import com.common.entities.models.Period;
+import com.common.entities.models.Subject;
 import com.microservice.administrator.models.PeriodData;
 
 
@@ -14,4 +14,5 @@ public interface IServicePeriod {
 	public PeriodData findById(Long id); //Retrieve
 	public void delete(Long id);  //Delete
 	public List<PeriodData> findAll(); //List
+	public Subject createSubject(Subject Subject);
 }
