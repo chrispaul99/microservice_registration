@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Periodo:</label>
                     <div class="col-sm-8">
-                        <select [(ngModel)]="periodo" formControlName="periodo" [ngClass]="{'is-invalid': submitted && f.periodo.errors}" name="select" class="form-control">
+                        <select [(ngModel)]="IDperiodo" formControlName="periodo" [ngClass]="{'is-invalid': submitted && f.periodo.errors}" name="select" class="form-control">
                             <option *ngFor="let item of periodos" value="{{ item.idPeriod }}">{{ item.start_date }} - {{ item.end_date }}</option>
                         </select>
                         <div *ngIf="submitted && f.periodo.errors">
@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of materias">
+                                <tr *ngFor="let item of materias; let i = index">
                                     <td>
                                         NRC {{item.nrc}} - {{item.name}}
                                     </td>
@@ -40,15 +40,12 @@
                                         {{item.total_credits}}
                                     </td>
                                     <td class="btn-group">
-                                        <button (click)="selectMateria(item)" class="btn btn-sm btn-info"><fa-icon [icon]="faCheck"></fa-icon></button>
+                                        <button (click)="selectMateria(item, i)" type="button" [disabled]="controllerButton[i]" [ngClass]="controllerButton[i]==true ? 'btn btn-warning btn-skew' : 'btn btn-info btn-skew'"><i [ngClass]="controllerButton[i] ? 'feather icon-thumbs-up' : 'feather icon-check'"></i></button>
                                     </td>
                                 </tr>
 
                             </tbody>
                         </table>
-                        <div *ngIf="submitted && f.materia.errors">
-                            <div *ngIf="f.materia.errors.required" class="text-c-red">Las materias son requeridas</div>
-                        </div>
                     </div>
                 </div>
                 <div class="form-group row">

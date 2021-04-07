@@ -23,8 +23,9 @@ export class MatricularseComponent implements OnInit {
   matriculas: Matricula[] = [];
   materias: Materia[];
   periodos: Periodo[];
-  periodo: Periodo = new Periodo();
+  IDperiodo: number;
   estudiante: Estudiante = new Estudiante();
+  controllerButton: boolean[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,7 +37,6 @@ export class MatricularseComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       periodo: ['', [Validators.required]],
-      materia: ['', [Validators.required]],
     });
     this.listarMaterias();
     this.listarPeriodos();
@@ -46,6 +46,10 @@ export class MatricularseComponent implements OnInit {
   listarMaterias(): void {
     this.materiaService.list().subscribe(data => {
       this.materias = data;
+    },
+    err => {},
+    () => {
+      this.controllerButton.push(false);
     });
   }
 
@@ -56,17 +60,19 @@ export class MatricularseComponent implements OnInit {
   }
 
   getEstudiante(): void {
-    this.estudianteService.retrieve(1).subscribe(result => this.estudiante = result);
+    this.estudianteService.retrieve(1).subscribe(result => this.estudiante = result,
+      err => {},
+      () => this.estudiante.registrations = []);
   }
 
-  selectMateria(m: Materia): void{
+  selectMateria(m: Materia, pos: number): void{
+    this.controllerButton[pos] = true;
     this.matricula.date = moment().toDate();
-    this.matricula.period = this.periodo;
+    this.matricula.subject = m;
     this.matricula.type = 'P';
     this.matricula.status = false;
     this.calcularPago();
-    this.matricula.subject = m;
-    this.estudiante.registrations.push(this.matricula);
+    this.attachPeriodo();
   }
 
   calcularPago(): void {
@@ -89,29 +95,56 @@ export class MatricularseComponent implements OnInit {
     return this.form.controls;
   }
 
-  onSubmit(): void {
-    this.matricula.status = false;
-    this.submitted = true;
-    if (this.form.invalid) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Error en el formulario',
-      });
-      return;
-    }
-    this.estudianteService.create(this.estudiante).subscribe(() => {
+  attachPeriodo(): void {
+    this.periodoService.retrieve(this.IDperiodo).subscribe(data => {
+      this.matricula.period = data;
+    },
+    err => {},
+    () => {
+      this.estudiante.registrations.push(this.matricula);
+      console.log(this.estudiante.registrations);
       Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: 'Matriculas Agregadas',
+        title: 'Materia Agregada',
         showConfirmButton: false,
         timer: 1500
       });
-      this.matricula = new Matricula();
-      this.submitted = false;
-      this.onReset();
     });
+  }
+
+  onSubmit(): void {
+    if (this.estudiante.registrations.length === 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Las materias son necesarias',
+      });
+    }
+    else {
+      this.matricula.status = false;
+      this.submitted = true;
+      if (this.form.invalid) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error en el formulario',
+        });
+        return;
+      }
+      this.estudianteService.create(this.estudiante).subscribe(() => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Matriculas Agregadas',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.matricula = new Matricula();
+        this.submitted = false;
+        this.onReset();
+      });
+    }
   }
 
   onReset(): void {

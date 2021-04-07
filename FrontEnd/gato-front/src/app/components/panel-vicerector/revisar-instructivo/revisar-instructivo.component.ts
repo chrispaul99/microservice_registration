@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Instructivo } from '../../../models/Instructivo/instructivo';
+import { InstructivoService } from '../../../services/Instructivo/instructivo.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-revisar-instructivo',
@@ -9,56 +13,50 @@ import { ActivatedRoute } from '@angular/router';
 export class RevisarInstructivoComponent implements OnInit {
 
   pdfSrc = 'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf';
+  instructivo: Instructivo = new Instructivo();
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private instructivoService: InstructivoService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    // this.activatedRoute.params.subscribe(
-    //   params => {
-    //     if (params.id){
-    //       this.alumnoService.retrieve(params.id).subscribe(
-    //         result => {
-    //           this.alumno = result;
-    //         }
-    //       );
-    //     }
-    //   }
-    // );
+    this.activatedRoute.params.subscribe(
+      params => {
+        if (params.id){
+          console.log(params.id);
+          this.instructivoService.retrieve(params.id).subscribe(
+            result => {
+              this.instructivo = result;
+            }
+          );
+        }
+      }
+    );
   }
 
   Denied(): void {
-    // False
-    this.onSubmit();
+    this.instructivo.status = false;
+    this.onSubmit('Denegado');
   }
 
   Aprobe(): void {
-    // True
-    this.onSubmit();
+    this.instructivo.status = true;
+    this.onSubmit('Aprobado');
   }
 
-  onSubmit(): void {
-    // if (this.form.invalid) {
-    //   Swal.fire({
-    //     icon: 'error',
-    //     title: 'Oops...',
-    //     text: 'Error en el formulario',
-    //   });
-    //   return;
-    // }
-    // this.materiaService.create(this.materia).subscribe(() => {
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Materia Modificada',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   });
-    //   this.materia = new Materia();
-    //   this.submitted = false;
-    //   location.reload();
-    // });
+  onSubmit(str: string): void {
+    this.instructivoService.create(this.instructivo).subscribe(() => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'info',
+        title: `Instructivo ${str}`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.router.navigateByUrl('/panelVicerector/Listar_Instructivos');
+    });
   }
 
 }

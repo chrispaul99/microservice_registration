@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/Login/login.service';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-// import { EncryptService } from '../../services/Encrypt/encrypt.service';
-import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Login } from '../../models/Usuario/Usuario';
 
@@ -13,7 +11,6 @@ import { Login } from '../../models/Usuario/Usuario';
 })
 export class LoginComponent implements OnInit {
 
-  // constructor(private router: Router) {} // Borrar
 
   admin: Login = new Login();
   form: FormGroup;
@@ -21,39 +18,35 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private auth: LoginService,
-    // private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
-
     this.auth.sesionOpen();
+    this.form = this.formBuilder.group({
+      correo: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
-  login( form: NgForm ): void {
-  // this.form = this.formBuilder.group({
-  //   correo: ['', [Validators.required]],
-  //   password: ['', [Validators.required]],
-  // });
-  // if (  form.invalid ) { return; }
 
-    /* administrador*/
-  this.admin.username = 'espe2121';
-  this.admin.password = 'espe2121';
-
-  /* usuario*/
-  // this.admin.username = 'espe2121';
-  // this.admin.password = 'espe2121';
-  Swal.fire({
-    allowOutsideClick: false,
-    icon: 'info',
-    text: 'Espere por favor...'
-  });
-  Swal.showLoading();
-
-    /*var encrypted = this.EncrDecr.set('123456$#@$^@1ERF', this.usuario.password);
-    console.log(encrypted);
-    this.usuario.password = encrypted;*/
-
-  this.auth.login( this.admin )
+  onSubmit(): void {
+    this.admin.password = 'espe2121';
+    if (this.form.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error en el formulario',
+      });
+      return;
+    }
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Espere por favor...'
+    });
+    Swal.showLoading();
+    this.auth.attachRuta(this.admin.username);
+    this.auth.login( this.admin )
     .subscribe( resp => {
       this.auth.verificarRol();
       Swal.close();
@@ -65,5 +58,13 @@ export class LoginComponent implements OnInit {
         text: 'Inténtelo de nuevo'
       });
     });
+    this.submitted = true;
+    this.onReset();
+  }
+
+  onReset(): void {
+    this.submitted = false;
+    this.admin = new Login();
+    this.form.reset();
   }
 }

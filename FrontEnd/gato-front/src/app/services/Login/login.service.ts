@@ -13,6 +13,7 @@ export class LoginService {
   url = environment.url + '/security/authjwt/signin';
   // url = 'http://localhost:8084/authjwt/signin';
   userToken: string;
+  rutaKey: string;
   constructor(private http: HttpClient, private router: Router) {
     this.leerToken();
   }
@@ -102,7 +103,23 @@ export class LoginService {
         this.router.navigateByUrl('/panelEstudiante');
         break;
       case 'A':
-        this.router.navigateByUrl('/panelUar');
+        switch (this.rutaKey) {
+          case 'UAR':
+            this.router.navigateByUrl('/panelUar');
+            break;
+          case 'Est':
+            this.router.navigateByUrl('/panelEstudiante');
+            break;
+          case 'Vice':
+            this.router.navigateByUrl('/panelVicerector');
+            break;
+          case 'Dir':
+            this.router.navigateByUrl('/panelDirector');
+            break;
+          default:
+            this.router.navigateByUrl('/panelUar');
+            break;
+        }
         break;
     }
   }
@@ -110,6 +127,26 @@ export class LoginService {
   sesionOpen(): void {
     if (this.estaAutenticado()){
       this.verificarRol();
+    }
+  }
+
+  attachRuta(key: string): void {
+    console.log(key);
+    switch (key) {
+      case 'espe2121':
+        this.rutaKey = 'UAR';
+        break;
+      case 'L00379351':
+          this.rutaKey = 'Est';
+          break;
+      case 'L00379352':
+        this.rutaKey = 'Vice';
+        break;
+      case 'L00379353':
+        this.rutaKey = 'Dir';
+        break;
+      default:
+        break;
     }
   }
 }

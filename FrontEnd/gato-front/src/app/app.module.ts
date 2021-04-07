@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PanelEstudianteComponent } from './components/panel-estudiante/panel-estudiante.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { EncryptService } from './services/Encrypt/encrypt.service';
 import { ServiceInterceptor } from './services/Interceptor/service.interceptor';
@@ -34,6 +34,8 @@ import { PanelDirectorCarreraComponent } from './components/panel-director-carre
     FormsModule,
     HttpClientModule,
     PdfViewerModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     EncryptService,

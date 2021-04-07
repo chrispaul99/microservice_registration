@@ -36,7 +36,6 @@ export class CrearMateriaComponent implements OnInit {
       periodo: ['', [Validators.required]],
     });
     this.listarPeriodos();
-    this.periodo.subjects = [];
   }
 
   listarPeriodos(): void {
@@ -61,6 +60,7 @@ export class CrearMateriaComponent implements OnInit {
 
   onSubmit(): void {
     if (this.validPeriod) {
+      this.periodo.subjects = [];
       this.materia.status = false;
       this.submitted = true;
       if (this.form.invalid) {
@@ -71,6 +71,8 @@ export class CrearMateriaComponent implements OnInit {
         });
         return;
       }
+      console.log(this.materia);
+      // if (this.periodo.subjects === undefined) { this.periodo.subjects = []; }
       this.periodo.subjects.push(this.materia);
       this.periodoService.create(this.periodo).subscribe(() => {
         Swal.fire({
