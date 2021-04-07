@@ -28,6 +28,7 @@ import com.microservice.administrator.models.AdministradorData;
 import com.microservice.administrator.models.InstructiveData;
 import com.microservice.administrator.models.PeriodData;
 import com.microservice.administrator.models.PeriodSubject;
+import com.microservice.administrator.models.ScheduleData;
 import com.microservice.administrator.services.IServiceAdministrator;
 import com.microservice.administrator.services.IServiceInstructive;
 import com.microservice.administrator.services.IServicePeriod;
@@ -78,12 +79,22 @@ public class PeriodController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> update(@RequestBody PeriodData Period, @PathVariable Long id) {
         PeriodData PeriodOptional = service.findById(id);
-
         if (PeriodOptional==null)
             return ResponseEntity.notFound().build();
         Period.setIdPeriod(id);
         service.save(Period);
         return ResponseEntity.ok(Period);
+    }
+
+	@PutMapping("/schedule/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Object> createSchedule(@RequestBody ScheduleData schedule, @PathVariable Long id) {
+        PeriodData PeriodOptional = service.findById(id);
+        if (PeriodOptional==null)
+            return ResponseEntity.notFound().build();
+        PeriodOptional.setSchedule(schedule);
+        service.save(PeriodOptional);
+        return ResponseEntity.ok(PeriodOptional);
     }
 	
 	
