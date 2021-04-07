@@ -5,9 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 @MappedSuperclass
 public class Subject {
@@ -46,8 +48,6 @@ public class Subject {
 	@Column(name="status")
 	private Boolean status;
     
-    //@OneToOne(mappedBy = "subject", cascade = CascadeType.ALL)
-    //private Registration registration;
 
     public String getName() {
         return name;
@@ -121,13 +121,6 @@ public class Subject {
     //public void setPeriod(Period period) {
     //    this.period = period;
     //}
-//
-    //public Registration getRegistration() {
-    //    return registration;
-    //}
-//
-    //public void setRegistration(Registration registration) {
-    //    this.registration = registration;
-    //}
+
 //
 }

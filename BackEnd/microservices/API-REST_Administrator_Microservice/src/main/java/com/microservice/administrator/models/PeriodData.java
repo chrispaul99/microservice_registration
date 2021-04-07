@@ -23,10 +23,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class PeriodData extends Period {
 
-    @Id
-	@Column(name="id_period")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idPeriod;
 
 	@OneToOne(cascade = CascadeType.REMOVE)		
 	@JoinColumn(name = "fk_instructive", referencedColumnName = "id_instructive")
@@ -44,20 +40,12 @@ public class PeriodData extends Period {
 	@JsonIgnoreProperties(value = {"period"}, allowSetters = true)
 	private List<PeriodSubject> periods_subject;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "period", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties(value = {"period"}, allowSetters = true)
+	private List<PeriodRegistration> periods_registration;
+
 	public PeriodData() {
 		this.periods_subject=new ArrayList<PeriodSubject>();
-	}
-
-	public PeriodData(Long idPeriod) {
-		this.idPeriod = idPeriod;
-	}
-
-	public Long getIdPeriod() {
-		return idPeriod;
-	}
-
-	public void setIdPeriod(Long idPeriod) {
-		this.idPeriod = idPeriod;
 	}
 
 	public InstructiveData getInstructive() {

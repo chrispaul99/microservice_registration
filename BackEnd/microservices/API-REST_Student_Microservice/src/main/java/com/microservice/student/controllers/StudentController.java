@@ -102,10 +102,6 @@ public class StudentController {
 		service.save(student);
 		return student;
 	}
-	//@PutMapping("/addRegistrations/{id}")
-	//public ResponseEntity<Object> updateRegistration(@RequestBody List<Registration> registrations, @PathVariable Long id) {
-//
-    //}
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)

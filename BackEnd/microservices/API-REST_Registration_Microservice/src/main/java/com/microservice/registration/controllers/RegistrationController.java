@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.common.entities.models.Registration;
 import com.microservice.registration.exceptions.RegistrationNotFoundException;
 import com.microservice.registration.models.RegistrationData;
 import com.microservice.registration.services.IServiceRegistration;
@@ -30,7 +29,7 @@ import com.microservice.registration.services.IServiceRegistration;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/Registration")
+@RequestMapping("/")
 public class RegistrationController {
 	
 	@Autowired
@@ -62,11 +61,10 @@ public class RegistrationController {
 		return Registration;
 	}
 
-	@PostMapping("/savelistado")
+	@PostMapping("/savelistado/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public List<RegistrationData> createlistado(@Valid @RequestBody List<RegistrationData> registrations) {
-		service.añadirlistadoMatricula(registrations);
-		return registrations;
+	public void createlistado(@PathVariable Long id, @RequestBody List<RegistrationData> registrations) {
+		service.asignarMatriculas(registrations, id);
 	}
 	
 	@PutMapping("/update/{id}")

@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.common.entities.models.Administrator;
 import com.common.entities.models.Instructive;
 import com.common.entities.models.Period;
+import com.common.entities.models.Registration;
 import com.common.entities.models.Subject;
 import com.microservice.administrator.exceptions.PeriodNotFoundException;
 import com.microservice.administrator.models.AdministradorData;
 import com.microservice.administrator.models.InstructiveData;
 import com.microservice.administrator.models.PeriodData;
+import com.microservice.administrator.models.PeriodRegistration;
 import com.microservice.administrator.models.PeriodSubject;
 import com.microservice.administrator.models.ScheduleData;
 import com.microservice.administrator.services.IServiceAdministrator;
@@ -119,4 +121,16 @@ public class PeriodController {
 		this.service.save(pdDb);
 		return ResponseEntity.status(HttpStatus.CREATED).body(subject);
 	}
+	//@PutMapping("/registration")
+	//public  ResponseEntity<?> asignarMatricula(@RequestBody Registration registration){
+	//	PeriodData pdDb=this.service.findById(registration.getPeriod().getIdPeriod());
+	//	if(pdDb == null) {
+	//		return ResponseEntity.notFound().build();
+	//	}
+	//	PeriodRegistration subject_std = new PeriodRegistration();
+	//	subject_std.setIdRegistration(registration.getIdRegistration());
+	//	subject_std.setPeriod(pdDb);
+	//	this.service.save(pdDb);
+	//	return ResponseEntity.status(HttpStatus.CREATED).body(registration);
+	//}
 }

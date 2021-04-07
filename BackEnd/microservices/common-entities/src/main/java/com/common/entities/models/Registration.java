@@ -3,19 +3,14 @@ package com.common.entities.models;
 
 import java.util.Calendar;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,7 +19,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
-public abstract class Registration{
+public class Registration{
 	
 	@Id
 	@Column(name="id_registration")
@@ -46,19 +41,14 @@ public abstract class Registration{
 	@Column(name="paytotal")
 	private Double paytotal;
 	
-	@NotEmpty(message = "Ingrese el estado")
 	@NotNull
 	@Column(name="status")
 	private Boolean status;
 	
-	//@OneToOne(cascade = CascadeType.ALL)		
-	//@JoinColumn(name = "fk_subject", referencedColumnName = "id_subject")
-	//private Subject subject;
-//
-	//@OneToOne(cascade = CascadeType.ALL)		
-	//@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
+	//@Transient
 	//private Period period;
-	
+	@Transient
+	private Subject subject;
 	
 	public Calendar getDate() {
 		return date;
@@ -100,16 +90,22 @@ public abstract class Registration{
 		this.idRegistration = idRegistration;
 	}
 
+	public Subject getSubject() {
+		return subject;
+	}
 
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
 
-	//public Subject getSubject() {
-	//	return subject;
+	//public Period getPeriod() {
+	//	return period;
 	//}
-
-	//public void setSubject(Subject subject) {
-	//	this.subject = subject;
+//
+	//public void setPeriod(Period period) {
+	//	this.period = period;
 	//}
-
+//
 	
 	
 	

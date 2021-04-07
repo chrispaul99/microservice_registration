@@ -4,6 +4,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,6 +16,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
 public abstract class Period {
+	
+	@Id
+	@Column(name="id_period")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long idPeriod;
 	
 	@Column(name="start_date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -66,6 +74,14 @@ public abstract class Period {
 		this.subjects = subjects;
 	}
 //
+
+	public Long getIdPeriod() {
+		return idPeriod;
+	}
+
+	public void setIdPeriod(Long idPeriod) {
+		this.idPeriod = idPeriod;
+	}
 	
 
 }

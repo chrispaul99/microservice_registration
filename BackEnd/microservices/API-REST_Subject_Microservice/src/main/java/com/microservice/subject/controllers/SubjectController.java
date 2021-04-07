@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.common.entities.models.Registration;
 import com.common.entities.models.Subject;
 import com.microservice.subject.exceptions.SubjectNotFoundException;
 import com.microservice.subject.models.SubjectData;
+import com.microservice.subject.models.SubjectRegistration;
 import com.microservice.subject.services.IServiceSubject;
 
 @RestController
@@ -60,15 +62,28 @@ public class SubjectController {
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Object> update(@RequestBody SubjectData Subject, @PathVariable Long id) {
         SubjectData SubjectOptional = service.findById(id);
-
         if (SubjectOptional==null)
             return ResponseEntity.notFound().build();
         Subject.setIdSubject(id);
         service.save(Subject);
         return ResponseEntity.ok(Subject);
     }
+
+	@PutMapping("/registration/{id}")
+	public  ResponseEntity<?> asignarMatricula(@PathVariable Long id,@RequestBody Registration registration){
+		SubjectData pdDb=this.service.findById(id);
 	
-	
+		if(pdDb == null) {
+			return ResponseEntity.notFound().build();
+		}
+		SubjectRegistration subject_std = new SubjectRegistration();
+		subject_std.setIdRegistration(registration.getIdRegistration());
+		subject_std.setSubject(pdDb);
+		pdDb.setRegistration(subject_std);
+		System.out.println(pdDb.getRegistration().getIdRegistration());
+		//this.service.save(pdDb);
+		return ResponseEntity.status(HttpStatus.CREATED).body(pdDb);
+	}
 	@Transactional
 	@DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
