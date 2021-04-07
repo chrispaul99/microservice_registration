@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.common.entities.models.Registration;
 import com.microservice.student.exceptions.StudentNotFoundException;
@@ -65,7 +64,6 @@ public class StudentController {
 	}
 
 	@GetMapping("/message")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String test() {
 		
 		return "Hello from microservice student";
@@ -104,7 +102,10 @@ public class StudentController {
 		service.save(student);
 		return student;
 	}
-	
+	//@PutMapping("/addRegistrations/{id}")
+	//public ResponseEntity<Object> updateRegistration(@RequestBody List<Registration> registrations, @PathVariable Long id) {
+//
+    //}
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
