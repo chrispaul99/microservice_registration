@@ -102,7 +102,7 @@ export class LoginService {
         this.router.navigateByUrl('/panelEstudiante');
         break;
       case 'A':
-        this.router.navigateByUrl('/panelDirector');
+        this.router.navigateByUrl('/panelUar');
         break;
     }
   }

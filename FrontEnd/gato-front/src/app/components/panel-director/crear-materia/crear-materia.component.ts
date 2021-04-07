@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Materia } from '../../../models/Materia/materia';
 import { MateriaService } from '../../../services/Materia/materia.service';
 import { PeriodoService } from '../../../services/Periodo/periodo.service';
+import { Periodo } from '../../../models/Periodo/periodo';
 
 @Component({
   selector: 'app-crear-materia',
@@ -15,6 +16,8 @@ export class CrearMateriaComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   materia: Materia = new Materia();
+  periodo: Periodo = new Periodo();
+  periodos: Periodo[];
   validPeriod = false;
 
   constructor(
@@ -30,12 +33,15 @@ export class CrearMateriaComponent implements OnInit {
       nivel: ['', [Validators.required]],
       nrc: ['', [Validators.required]],
       creditos: ['', [Validators.required]],
+      periodo: ['', [Validators.required]],
     });
     this.listarPeriodos();
+    this.periodo.subjects = [];
   }
 
   listarPeriodos(): void {
     this.periodoService.list().subscribe(data => {
+      this.periodos = data;
       if (data.length === 0) {
         Swal.fire({
           icon: 'warning',
@@ -65,7 +71,8 @@ export class CrearMateriaComponent implements OnInit {
         });
         return;
       }
-      this.materiaService.create(this.materia).subscribe(() => {
+      this.periodo.subjects.push(this.materia);
+      this.periodoService.create(this.periodo).subscribe(() => {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -90,6 +97,7 @@ export class CrearMateriaComponent implements OnInit {
     this.submitted = false;
     this.form.reset();
     this.materia = new Materia();
+    this.periodo = new Periodo();
   }
 
 }

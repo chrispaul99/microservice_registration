@@ -27,7 +27,7 @@
                     <label class="col-sm-4 col-form-label">Instructivo:</label>
                     <div class="col-sm-8">
                         <select [(ngModel)]="instructivoSelected" formControlName="instructivo" [ngClass]="{'is-invalid': submitted && f.instructivo.errors}" name="select" class="form-control">
-                            <option *ngFor="let item of instructivos" value="{{ item.idInstructive }}">{{ item.file }}</option>
+                            <option *ngFor="let item of instructivos" value="{{ item.idInstructive }}">{{ item.document }}</option>
                         </select>
                         <div *ngIf="submitted && f.instructivo.errors">
                             <div *ngIf="f.instructivo.errors.required" class="text-c-red">El instructivo es requerido</div>

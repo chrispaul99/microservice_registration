@@ -23,7 +23,7 @@ const routes: Routes = [
   canActivate: [ AuthGuard ] , data: { permittedRoles: ['A'] } },
   { path: 'panelDirCarrera', loadChildren: () =>
   import('./components/panel-director-carrera/panel-director-carrera.module').then(m => m.PanelDirectorCarreraModule),
-  canActivate: [ AuthGuard ] , data: { permittedRoles: ['A'] } },
+  canActivate: [ AuthGuard ] , data: { permittedRoles: ['U'] } },
   { path: '**', redirectTo: '' }
 ];
 

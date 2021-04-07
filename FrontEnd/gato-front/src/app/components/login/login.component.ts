@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
   this.admin.username = 'espe2121';
   this.admin.password = 'espe2121';
 
-    /* usuario*/
-    /*this.usuario.ID = 'L00379361';
-    this.usuario.password = '6zmKXdL2OJMAlFWSTIJcbQ==';*/
+  /* usuario*/
+  // this.admin.username = 'espe2121';
+  // this.admin.password = 'espe2121';
   Swal.fire({
     allowOutsideClick: false,
     icon: 'info',

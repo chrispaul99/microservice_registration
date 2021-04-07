@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Periodo } from '../../models/Periodo/periodo';
+import { Cronograma } from '../../models/Cronograma/cronograma';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,11 @@ export class PeriodoService {
       return this.http.post<any>(`${this.url}/save`, periodoBody, environment.httpOptions);
     }
     return this.http.put<any>(`${this.url}/update/${p.idPeriod}`, periodoBody, environment.httpOptions);
+  }
+
+  createSchedule(id: number, schedule: Cronograma): Observable<Periodo> {
+    const periodoBody = JSON.stringify(schedule);
+    return this.http.put<any>(`${this.url}/schedule/${id}`, periodoBody, environment.httpOptions);
   }
 
   retrieve(id: number): Observable<Periodo> {

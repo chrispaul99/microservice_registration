@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Periodo:</label>
                     <div class="col-sm-8">
-                        <select [(ngModel)]="periodo" formControlName="periodo" [ngClass]="{'is-invalid': submitted && f.periodo.errors}" name="select" class="form-control">
+                        <select [(ngModel)]="idPeriodo" formControlName="periodo" [ngClass]="{'is-invalid': submitted && f.periodo.errors}" name="select" class="form-control">
                             <option *ngFor="let item of periodos" value="{{ item.idPeriod }}">{{ item.start_date }} - {{ item.end_date }}</option>
                         </select>
                         <div *ngIf="submitted && f.periodo.errors">

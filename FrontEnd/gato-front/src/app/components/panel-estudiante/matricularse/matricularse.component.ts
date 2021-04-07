@@ -7,6 +7,8 @@ import { MateriaService } from '../../../services/Materia/materia.service';
 import { Periodo } from '../../../models/Periodo/periodo';
 import { PeriodoService } from '../../../services/Periodo/periodo.service';
 import { Estudiante } from '../../../models/Estudiante/estudiante';
+import { EstudianteService } from '../../../services/Estudiante/estudiante.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-matricularse',
@@ -18,27 +20,27 @@ export class MatricularseComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   matricula: Matricula = new Matricula();
+  matriculas: Matricula[] = [];
   materias: Materia[];
-  materiaSubmit: Materia[] = [];
   periodos: Periodo[];
+  periodo: Periodo = new Periodo();
   estudiante: Estudiante = new Estudiante();
 
   constructor(
     private formBuilder: FormBuilder,
     private periodoService: PeriodoService,
     private materiaService: MateriaService,
+    private estudianteService: EstudianteService,
   ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       periodo: ['', [Validators.required]],
-      materias: ['', [Validators.required]],
-      fecha: ['', [Validators.required]],
-      tipo: ['', [Validators.required]],
+      materia: ['', [Validators.required]],
     });
     this.listarMaterias();
     this.listarPeriodos();
-    // Retreive Estudiante (token?)
+    this.getEstudiante();
   }
 
   listarMaterias(): void {
@@ -53,28 +55,30 @@ export class MatricularseComponent implements OnInit {
     });
   }
 
-  getEstudiante(): void {}
-
-  selectMateria(m: Materia): void{
-    this.materiaSubmit.push(m);
+  getEstudiante(): void {
+    this.estudianteService.retrieve(1).subscribe(result => this.estudiante = result);
   }
 
-  calcularCreditos(): void {
-    for (const m of this.materiaSubmit) {
-      this.matricula.totalCreditos += m.total_credits;
-    }
+  selectMateria(m: Materia): void{
+    this.matricula.date = moment().toDate();
+    this.matricula.period = this.periodo;
+    this.matricula.type = 'P';
+    this.matricula.status = false;
+    this.calcularPago();
+    this.matricula.subject = m;
+    this.estudiante.registrations.push(this.matricula);
   }
 
   calcularPago(): void {
-    switch (this.matricula.tipo) {
+    switch (this.matricula.type) {
       case 'P':
-        this.matricula.pagoTotal = 0;
+        this.matricula.paytotal = 0;
         break;
       case 'S':
-        this.matricula.pagoTotal = this.matricula.totalCreditos * 30;
+        this.matricula.paytotal = this.matricula.paytotal * 30;
         break;
       case 'T':
-        this.matricula.pagoTotal = this.matricula.totalCreditos * 60;
+        this.matricula.paytotal = this.matricula.paytotal * 60;
         break;
       default:
         break;
@@ -87,9 +91,6 @@ export class MatricularseComponent implements OnInit {
 
   onSubmit(): void {
     this.matricula.status = false;
-    this.matricula.materias = this.materiaSubmit;
-    this.calcularCreditos();
-    this.calcularPago();
     this.submitted = true;
     if (this.form.invalid) {
       Swal.fire({
@@ -99,24 +100,23 @@ export class MatricularseComponent implements OnInit {
       });
       return;
     }
-    // this.empresaService.create(this.matricula).subscribe(() => {
-    //   Swal.fire({
-    //     position: 'top-end',
-    //     icon: 'success',
-    //     title: 'Matricula Agregada',
-    //     showConfirmButton: false,
-    //     timer: 1500
-    //   });
-    //   this.matricula = new Matricula();
-    //   this.submitted = false;
-    //   this.onReset();
-    // });
+    this.estudianteService.create(this.estudiante).subscribe(() => {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Matriculas Agregadas',
+        showConfirmButton: false,
+        timer: 1500
+      });
+      this.matricula = new Matricula();
+      this.submitted = false;
+      this.onReset();
+    });
   }
 
   onReset(): void {
     this.submitted = false;
     this.form.reset();
-    this.materiaSubmit = [];
     this.matricula = new Matricula();
   }
 

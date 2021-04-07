@@ -39,7 +39,9 @@ export class CrearPeriodoComponent implements OnInit {
 
   listarInstructivos(): void{
     this.instructivoService.list().subscribe(data => {
+      console.log(data.length);
       for (let i = 0; i < data.length; i++) {
+        console.log(`${i}: ${data[i].status}`);
         if (data[i].status) { this.instructivos.push(data[i]); }
       }
       if (this.instructivos.length === 0) {

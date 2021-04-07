@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Cronograma } from '../../../models/Cronograma/cronograma';
-import { CronogramaService } from '../../../services/Cronograma/cronograma.service';
 import { PeriodoService } from '../../../services/Periodo/periodo.service';
 import { Periodo } from '../../../models/Periodo/periodo';
 
@@ -17,11 +16,10 @@ export class SubirCronMatriculasComponent implements OnInit {
   submitted = false;
   cronograma: Cronograma = new Cronograma();
   periodos: Periodo[];
-  periodo: Periodo = new Periodo();
+  idPeriodo: number;
 
   constructor(
     private formBuilder: FormBuilder,
-    private cronogramaService: CronogramaService,
     private periodoService: PeriodoService,
   ) { }
 
@@ -57,7 +55,7 @@ export class SubirCronMatriculasComponent implements OnInit {
       });
       return;
     }
-    this.cronogramaService.create(this.cronograma).subscribe(() => {
+    this.periodoService.createSchedule(this.idPeriodo, this.cronograma).subscribe(() => {
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -65,10 +63,7 @@ export class SubirCronMatriculasComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       });
-      console.log(this.periodo);
-      this.attachPeriodo();
       this.cronograma = new Cronograma();
-      this.periodo = new Periodo();
       this.submitted = false;
       this.onReset();
     });
@@ -78,12 +73,6 @@ export class SubirCronMatriculasComponent implements OnInit {
     this.submitted = false;
     this.form.reset();
     this.cronograma = new Cronograma();
-    this.periodo = new Periodo();
-  }
-
-  attachPeriodo(): void {
-    this.periodo.schedule = this.cronograma;
-    this.periodoService.create(this.periodo).subscribe();
   }
 
 }
