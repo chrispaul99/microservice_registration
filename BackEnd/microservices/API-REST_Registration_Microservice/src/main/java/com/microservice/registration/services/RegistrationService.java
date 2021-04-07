@@ -56,15 +56,11 @@ public class RegistrationService implements IServiceRegistration{
 	public Iterable<RegistrationData> findAllById(Iterable<Long> ids) {
 		return RegistrationService.findAllById(ids);
 	}
-
 	@Override
-	public void eliminarAlumnoMatriculaPorId(Long id) {
-		StudentService.eliminarAlumnoMatriculaPorId(id);
-		
-	}
-	@Transactional(readOnly = true)
-	public void deleteById(Long id) {
-		this.eliminarAlumnoMatriculaPorId(id);
+	public void añadirlistadoMatricula(List<RegistrationData> registrations) {
+		for (RegistrationData elemento: registrations){
+			RegistrationService.save(elemento);
+		}
 	}
 
 }

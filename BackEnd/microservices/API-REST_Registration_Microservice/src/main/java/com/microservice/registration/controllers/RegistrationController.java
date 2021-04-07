@@ -61,7 +61,13 @@ public class RegistrationController {
 		service.save(Registration);
 		return Registration;
 	}
-	
+
+	@PostMapping("/savelistado")
+	@ResponseStatus(HttpStatus.CREATED)
+	public List<RegistrationData> createlistado(@Valid @RequestBody List<RegistrationData> registrations) {
+		service.añadirlistadoMatricula(registrations);
+		return registrations;
+	}
 	
 	@PutMapping("/update/{id}")
 	@ResponseStatus(HttpStatus.OK)
