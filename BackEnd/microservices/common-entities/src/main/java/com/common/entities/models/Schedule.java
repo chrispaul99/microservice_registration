@@ -19,7 +19,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @MappedSuperclass
 public abstract class Schedule {
-    @NotEmpty(message = "Ingrese los creditos minimos")
 	@NotNull
 	@Column(name="credit_min")
 	private Integer credit_min;
