@@ -6,25 +6,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.common.entities.models.Schedule;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Table(name = "schedules")
 @Entity
 public class ScheduleData extends Schedule {
     @Id
-	@Column(name="id_shedule")
+	@Column(name="id_schedule")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idSchedule;
 
-	@OneToOne(cascade = CascadeType.ALL)		
-	@JoinColumn(name = "fk_period", referencedColumnName = "id_period")
-	@JsonIgnoreProperties(value = {"schedulesData"}, allowSetters = true)
-	private PeriodData period;
+	@OneToOne(mappedBy ="schedule", cascade = CascadeType.REMOVE)
+	@JsonIgnore()
+    private PeriodData period;
 
 	public ScheduleData() {
 	}

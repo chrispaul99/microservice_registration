@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Null;
 
 import com.common.entities.models.Period;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,9 +36,9 @@ public class PeriodData extends Period {
 	@JoinColumn(name = "fk_administrator", referencedColumnName = "id_administrator")
 	private AdministradorData administrator;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "period", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnoreProperties(value = {"period"}, allowSetters = true)
-    private ScheduleData schedule;
+	@OneToOne(cascade = CascadeType.ALL)		
+	@JoinColumn(name = "fk_schedule", referencedColumnName = "id_schedule")
+	private ScheduleData schedule;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "period", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnoreProperties(value = {"period"}, allowSetters = true)
