@@ -26,4 +26,29 @@ public class PeriodSubject {
 	@JoinColumn(name = "fk_period",referencedColumnName="id_period")
 	@JsonIgnoreProperties(value = {"periodsSubjects"})
 	private PeriodData period;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getIdSubject() {
+		return idSubject;
+	}
+
+	public void setIdSubject(Long idSubject) {
+		this.idSubject = idSubject;
+	}
+
+	public PeriodData getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(PeriodData period) {
+		this.period = period;
+	}
+	
 }

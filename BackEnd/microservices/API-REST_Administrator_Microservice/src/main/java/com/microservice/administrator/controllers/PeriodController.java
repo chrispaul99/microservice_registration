@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.common.entities.models.Administrator;
 import com.common.entities.models.Instructive;
 import com.common.entities.models.Period;
+import com.common.entities.models.Subject;
 import com.microservice.administrator.exceptions.PeriodNotFoundException;
 import com.microservice.administrator.models.AdministradorData;
 import com.microservice.administrator.models.InstructiveData;
 import com.microservice.administrator.models.PeriodData;
+import com.microservice.administrator.models.PeriodSubject;
 import com.microservice.administrator.services.IServiceAdministrator;
 import com.microservice.administrator.services.IServiceInstructive;
 import com.microservice.administrator.services.IServicePeriod;
@@ -93,4 +95,18 @@ public class PeriodController {
 		return ResponseEntity.ok().build();
     }
 
+	@PutMapping("/{id}/subject")
+	public ResponseEntity<?> asignarMateria( @PathVariable Long id, @RequestBody Subject subject) {
+		PeriodData pdDb=this.service.findById(1L);
+		if(pdDb == null) {
+			return ResponseEntity.notFound().build();
+		}
+		Subject sub = this.service.createSubject(subject);
+		PeriodSubject subject_std = new PeriodSubject();
+		subject_std.setIdSubject(sub.getIdSubject());
+		subject_std.setPeriod(pdDb);
+		pdDb.addSubject(subject_std);
+		this.service.save(pdDb);
+		return ResponseEntity.status(HttpStatus.CREATED).body(sub);
+	}
 }

@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.common.entities.models.Period;
+import com.common.entities.models.Subject;
+import com.microservice.administrator.clients.ISubjectFeignClient;
 import com.microservice.administrator.models.PeriodData;
 import com.microservice.administrator.repositories.IPeriodRepository;
 
@@ -17,6 +18,9 @@ public class PeriodService implements IServicePeriod{
 	
 	@Autowired
 	private IPeriodRepository PeriodService;
+
+	@Autowired
+	private ISubjectFeignClient subjectService;
 	
 	@Override
 	@Transactional
@@ -49,6 +53,11 @@ public class PeriodService implements IServicePeriod{
 	@Transactional(readOnly = true)
 	public List<PeriodData> findAll() {
 		return (List<PeriodData>) PeriodService.findAll();
+	}
+
+	@Override
+	public Subject createSubject(Subject Subject) {
+		return subjectService.createSubject(Subject);
 	}
 
 }

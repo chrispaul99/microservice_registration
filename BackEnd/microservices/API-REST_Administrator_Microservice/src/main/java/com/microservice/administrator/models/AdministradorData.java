@@ -10,6 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.common.entities.models.Administrator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Table(name = "Administrators")
 @Entity
@@ -21,6 +22,7 @@ public class AdministradorData extends Administrator{
 	private Long idAdministrator;
 
 	@OneToOne(mappedBy = "administrator", cascade = CascadeType.ALL)
+	@JsonIgnore()
     private PeriodData period;
 
 	public AdministradorData() {

@@ -1,14 +1,21 @@
 package com.common.entities.models;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @MappedSuperclass
-public abstract class Subject {
-
+public class Subject {
+    @Id
+	@Column(name="id_subject")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long idSubject;
+    
 	@NotEmpty(message = "Ingrese el nombre de la materia")
 	@NotNull
 	@Size(min = 2, message = "La materia tener al menos 2 caracteres")
@@ -97,6 +104,15 @@ public abstract class Subject {
     public void setTotal_credits(Integer total_credits) {
         this.total_credits = total_credits;
     }
+
+    public Long getIdSubject() {
+        return idSubject;
+    }
+
+    public void setIdSubject(Long idSubject) {
+        this.idSubject = idSubject;
+    }
+    
 
     //public Period getPeriod() {
     //    return period;
